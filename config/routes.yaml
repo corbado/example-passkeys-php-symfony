@@ -1,3 +1,25 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+
+# -------- Frontend --------
+
+login:
+    path: /login
+    controller: App\Controller\FrontendController::login
+
+# -------- Backend --------
+ 
+loginInfo:
+    path: /corbado/loginInfo
+    controller: App\Controller\BackendController::loginInfo
+
+
+sessionToken:
+    path: /corbado/sessionToken
+    controller: App\Controller\BackendController::sessionToken
+
+
+passwordVerify:
+    path: /passwordVerify
+    controller: App\Controller\BackendController::passwordVerify
