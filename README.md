@@ -92,6 +92,11 @@ In the developer panel under `Project settings -> Web component` configure the e
 In our case the ngrok url was `https://d15e-212-204-96-162.eu.ngrok.io`
 ![image](https://user-images.githubusercontent.com/23581140/205945743-207cd062-bb41-4b3c-af0c-cb13bf279f9c.png)
 
+#### 2.3.4. Configure basic auth
+
+The loginInfo and sessionToken endpoints should only be accessible via http basic auth. In your own projects you can come up with your own username and password which have to be entered into the developer panel under `Project settings -> Web component`. In this sample implementation we predefined `basicusername` and `basicpassword` as credentials, so these are the values you have to enter:
+![image](https://user-images.githubusercontent.com/23581140/205995437-34a838e9-10e5-446d-817b-8d9005a3d764.png)
+
 ### 2.4. Configure .env file
 
 At the top level of this repository you will find the [.env file](https://github.com/corbado/widget-complete-tutorial/blob/master/.env). In there you need to set the following variables:
@@ -99,6 +104,8 @@ At the top level of this repository you will find the [.env file](https://github
 2. **PROJECT_ID**: your projectId which can be found on the top right of the dev panel (pro-xxxxxxxxxx)
 3. **API_SECRET**: your apiSecret which can be created on the `API credentials` page
 4. **NGROK_URL** Your ngrok URL which you received a few steps before (in our case `https://d15e-212-204-96-162.eu.ngrok.io`)
+5. (Optional) **HTTP_BASIC_AUTH_USERNAME**: If you change the username here, you also have to enter the new value into the dev panel, as seen in 2.3.4..
+5. (Optional) **HTTP_BASIC_AUTH_PASSWORD**: If you change the password here, you also have to enter the new value into the dev panel, as seen in 2.3.4..
 
 Congrats, you're set! Once you restart your symfony server the authentication process should be fully operational.
 
