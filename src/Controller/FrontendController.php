@@ -13,7 +13,12 @@ class FrontendController extends AbstractController
     public function login(Request $request): Response
     {
         $request->getSession()->remove('user');
-        return $this->render('login.html.twig');
+        return $this->render(
+            'login.html.twig',
+            array(
+                'cname' => $_ENV['CNAME'],
+            )
+        );
     }
 
     /**
@@ -25,7 +30,7 @@ class FrontendController extends AbstractController
         if (empty($user)) {
 
             //Redirect user to login page
-            return new Response("<meta http-equiv='refresh' content='0; url=http://localhost:8000/login' />");
+            return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/login' />", $_ENV['NGROK_URL']));
         }
 
         $split = explode(":", $user);
