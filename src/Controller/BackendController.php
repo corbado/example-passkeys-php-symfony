@@ -39,7 +39,7 @@ class BackendController extends AbstractController
         $token = $request->query->get('sessionToken');
 
         //Prepare Corbado request header
-        $encoded = base64_encode(sprintf("%s:%s", projectId, apiSecret));
+        $encoded = base64_encode(sprintf("%s:%s", $_ENV['PROJECT_ID'], $_ENV['API_SECRET']));
         $authentication = "Basic $encoded";
         $useragent = $request->headers->get('User-Agent');
         $remoteAddress = system("curl -s ipv4.icanhazip.com");
@@ -74,7 +74,7 @@ class BackendController extends AbstractController
         $request->getSession()->set("user", $value);
 
         //Forward the user to frontend page
-        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", ngrokUrl));
+        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", $_ENV['NGROK_URL']));
     }
 
     /**
