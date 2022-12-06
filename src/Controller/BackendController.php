@@ -9,10 +9,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class BackendController extends AbstractController
 {
 
-    const projectId = "";
-    const apiSecret = "";
-    const ngrokUrl = "";
-
     /**
      * @Route("/api/loginInfo", name="loginInfo", methods="GET")
      */
@@ -37,14 +33,13 @@ class BackendController extends AbstractController
 
     /**
      * @Route("/api/sessionToken", name="sessionToken", methods="GET")
-     * Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:107.0) Gecko/20100101 Firefox/107.0
      */
     public function sessionToken(Request $request, SessionInterface $session): Response
     {
         $token = $request->query->get('sessionToken');
 
         //Prepare Corbado request header
-        $encoded = base64_encode(sprintf("%s:%s", self::projectId, self::apiSecret));
+        $encoded = base64_encode(sprintf("%s:%s", projectId, apiSecret));
         $authentication = "Basic $encoded";
         $useragent = $request->headers->get('User-Agent');
         $remoteAddress = system("curl -s ipv4.icanhazip.com");
@@ -79,7 +74,7 @@ class BackendController extends AbstractController
         $request->getSession()->set("user", $value);
 
         //Forward the user to frontend page
-        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", self::ngrokUrl));
+        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", ngrokUrl));
     }
 
     /**
