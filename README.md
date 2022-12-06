@@ -1,7 +1,7 @@
 # Complete integration sample for the Corbado web component
 This is a sample implementation of frontend and backend where the Corbado web component is integrated.
 
-## File structure
+## 1. File structure
     .
     ├── ...
     ├── config                        
@@ -15,16 +15,35 @@ This is a sample implementation of frontend and backend where the Corbado web co
     │   └── login.html.twig             # Login page which contains the Corbado web component
     └── ...
 
-## How to use
+## 2. How to use
 >**Warning**
 >This sample code corresponds to the integration tutorial in our docs, please read it first in order to understand the flows and business logic!
 
-### Prerequisites
+### 2.1. Prerequisites
 The only thing you need is a CNAME which points to `auth.corbado.com`. We will use `auth.your-company.com` in this tutorial. More info on what a CNAME is and why it is needed can be found in our [docs](https://docs.corbado.com/integrations/web-component#1.-define-cname).
 
-### Corbado developer panel settings
+### 2.2. Corbado developer panel settings
 
-### Setup
+#### 2.2.1. Fill in your backend endpoints
+
+Under `Project settings -> Web component` configure the endpoints as seen in the following image, but use your own ngrok url (the paths stay the same)
+```
+<your-ngrok-url>/api/sessionToken
+<your-ngrok-url>/api/loginInfo
+<your-ngrok-url>/api/passwordVerify
+```
+![image](https://user-images.githubusercontent.com/23581140/205945743-207cd062-bb41-4b3c-af0c-cb13bf279f9c.png)
+
+
+#### 2.2.2. Authorize origins
+Inside the developer panel under `Project settings -> REST API` you need to enter the following origins in order to allow them to share resources.
+1. `https://CNAME`, which represents the Corbado web component
+2. `http://localhost:8000`, which is where your backend instance is running
+3. Your ngrok url which connects your lokal backend to the world
+
+![image](https://user-images.githubusercontent.com/23581140/205943452-50f5ef00-b70a-4bf1-8c4e-74d6e95a95f8.png)
+
+### 2.3. Setup
 To start the local development server your system requires [PHP](https://www.php.net/manual/en/install.php) and [Symfony](https://symfony.com/download):
 ```
 brew install php
@@ -53,9 +72,12 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trust
 You can start your ngrok instance by typing `ngrok http 8000`. In your terminal you should see the following:
 ![image](https://user-images.githubusercontent.com/23581140/205919914-986f95ea-7c32-4501-a651-f47b16e3b2e2.png)
 
-Entering the url which is inside the red rectangle with `/ping` as path should now display "pong" as well as this ngrok url just forwards requests to your local instance.
+Entering the url which is inside the red rectangle with `/ping` as path should now display "pong" as well since this ngrok url just forwards requests to your local instance.
 
-Congrats! You're set!
+Stop your symfony server by pressing `Ctrl+C` and open [/src/Controller/BackendController.php](https://github.com/corbado/widget-complete-tutorial/blob/master/src/Controller/BackendController.php) locally. There you need to configure the `projectId`, `apiSecret` constants with the corresponding values from the [Corbado developer panel](https://app.corbado.com). This is required for authentication with the Corbado server. Look here if you aren't sure where to get these values from. Also set the `ngrokUrl` constant to your previously obtained ngrok-url.
 
+Congrats, you're set! Once you restart your symfony server the authentication process should be fully operational.
 
-### Once it's running
+### 2.4. Once it's running
+
+If you now go to your ngrok url you should be forwarded to the `/login` page. There you can sign up / sign in and if authenticated you will be forwarded to the homepage. Have fun!
