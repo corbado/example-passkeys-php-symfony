@@ -20,33 +20,12 @@ This is a sample implementation of frontend and backend where the Corbado web co
 
 ## 2. How to use
 >**Warning**
->This sample code corresponds to the integration tutorial in our [docs](Link wenn online), please read it first in order to understand the flows and business logic!
+>This sample code corresponds to our [web component integration tutorial](Link wenn online), please read it first in order to understand the flows and business logic!
 
-### 2.1. Prerequisites
-The only thing you need is a CNAME which points to `auth.corbado.com`. We will use `auth.your-company.com` in this tutorial. More info on what a CNAME is and why it is needed can be found in our [docs](https://docs.corbado.com/integrations/web-component#1.-define-cname).
+### 2.1. CNAME
+The only thing you need to create is a CNAME which points to `auth.corbado.com`. We will use `auth.your-company.com` in this tutorial. More info on what a CNAME is and why it is needed can be found in our [docs](https://docs.corbado.com/integrations/web-component#1.-define-cname).
 
-### 2.2. Corbado developer panel settings
-
->**Warning**
->Remember to always press "Save changes" after entering details in the Corbado developer panel!
->
-#### 2.2.1. Configure CNAME
-
-In the developer panel under `Project settings -> Web component` enter the CNAME you previously created. 
->**Warning**
->It can take up to 5 minutes until our system has registered your CNAME
-
-![image](https://user-images.githubusercontent.com/23581140/205950309-f6f622e5-94ca-4413-9384-d7a2605da75d.png)
-
-#### 2.2.2. Authorize origins
-Inside the developer panel under `Project settings -> REST API` you need to enter the following origins in order to allow them to share resources.
-1. `https://auth.your-company.com`, the CNAME which represents the Corbado web component
-2. `http://localhost:8000`, which is where your backend instance is running
-3. Your ngrok URL which connects your local backend to the internet
-
-![image](https://user-images.githubusercontent.com/23581140/205950485-6285d536-d676-4382-a23c-c3c0bbfe3de4.png)
-
-### 2.3. Setup
+### 2.2. Setup
 To start the local development server your system requires [PHP](https://www.php.net/manual/en/install.php) and [Symfony](https://symfony.com/download):
 ```
 brew install php
@@ -76,6 +55,28 @@ You can start your ngrok instance by typing `ngrok http 8000`. In your terminal 
 ![image](https://user-images.githubusercontent.com/23581140/205919914-986f95ea-7c32-4501-a651-f47b16e3b2e2.png)
 
 Entering the url which is inside the red rectangle with `/ping` as path (In our case `https://d15e-212-204-96-162.eu.ngrok.io/ping`) should now display "pong" as well since this ngrok url just forwards requests to your local instance.
+
+
+### 2.3. Corbado developer panel settings
+
+>**Warning**
+>Remember to always press "Save changes" after entering details in the Corbado developer panel!
+>
+#### 2.3.1. Configure CNAME
+
+In the developer panel under `Project settings -> Web component` enter the CNAME you previously created. 
+>**Warning**
+>It can take up to 5 minutes until our system has registered your CNAME
+
+![image](https://user-images.githubusercontent.com/23581140/205950309-f6f622e5-94ca-4413-9384-d7a2605da75d.png)
+
+#### 2.3.2. Authorize origins
+Inside the developer panel under `Project settings -> REST API` you need to enter the following origins in order to allow them to share resources.
+1. `https://auth.your-company.com`, the CNAME which represents the Corbado web component
+2. `http://localhost:8000`, which is where your backend instance is running
+3. Your ngrok URL which connects your local backend to the internet
+
+![image](https://user-images.githubusercontent.com/23581140/205950485-6285d536-d676-4382-a23c-c3c0bbfe3de4.png)
 
 ### 2.4. Fill in your backend endpoints
 
