@@ -32,12 +32,12 @@ You then need to install composer:
 ```
 curl -sS https://getcomposer.org/installer | php
 ```
-to be able to install all required packages for this project:
+With composer you should be able to install all required packages for this project:
 ```
 sudo -E env "PATH=$PATH" php composer.phar install
 ```
 
-You should now be able to run this demo by typing `symfony server:start` into your console while being located in the same folder that contains this README file. If the setup was done correctly the following messages should appear in your terminal:![image](https://user-images.githubusercontent.com/23581140/205909459-7ed3d679-b313-40d3-85be-1178b80a1594.png)
+You should now be able to run this demo by typing `symfony server:start` into your console while being located in the same folder that contains this README file. If the setup was done correctly the following messages should appear in your terminal:![image](https://user-images.githubusercontent.com/23581140/205909459-7ed3d679-b313-40d3-85be-1178b80a1594.png). If you enter http://localhost:8000/ping into your browser it should display "pong".
 
 
 The endpoints of your local system must be entered into the developer panel and thus have to be public. To make your local instance publicly availbale we use [ngrok](https://ngrok.com/download). It can be installed using:
