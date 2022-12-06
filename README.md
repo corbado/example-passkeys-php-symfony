@@ -98,10 +98,13 @@ At the top level of this repository you will find the [.env file](https://github
 1. **CNAME**: Your cname which is "auth.your.company.com" in this tutorial
 2. **PROJECT_ID**: your projectId which can be found on the top right of the dev panel (pro-xxxxxxxxxx)
 3. **API_SECRET**: your apiSecret which can be created on the `API credentials` page
-4. **NGROK_URL** Your ngrok URL which you received a few steps before, which in our case was `https://d15e-212-204-96-162.eu.ngrok.io`
+4. **NGROK_URL** Your ngrok URL which you received a few steps before (in our case `https://d15e-212-204-96-162.eu.ngrok.io`)
 
 Congrats, you're set! Once you restart your symfony server the authentication process should be fully operational.
 
 ### 2.5. Once it's running
 
-If you now go to your ngrok URL you should be forwarded to the `/login` page. There you can sign up / sign in and if authenticated you will be forwarded to the homepage. Have fun!
+If you now go to your ngrok URL you should be forwarded to the `/login` page. There you can sign up / sign in and if authenticated you will be forwarded to the homepage which looks like this (With a different ngrok URL of course):
+
+![image](https://user-images.githubusercontent.com/23581140/205984124-c8698f66-c42e-4089-8214-7fbe604e04cf.png)
+
