@@ -2,8 +2,6 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -22,8 +20,6 @@ class BackendController extends AbstractController
     {
         $username = $request->query->get('username');
 
-        $method = $_SERVER['REQUEST_METHOD'];
-        var_dump("request method loginInfo: $method");
         //Look up in database if $username exists and if $username is blocked/not permitted to login
         $userExists = false;
         $userBlocked = false;
@@ -47,65 +43,43 @@ class BackendController extends AbstractController
     {
         $token = $request->query->get('sessionToken');
 
-        $method = $_SERVER['REQUEST_METHOD'];
-        var_dump("request method sessionToken: $method\n");
-
-        var_dump("HIER 1\n");
-        $projectId = '';
-        $apiSecret = '';
-        $encoded = base64_encode("$projectId:$apiSecret");
-        var_dump("HIER 2\n");
+        //Prepare Corbado request header
+        $encoded = base64_encode(sprintf("%s:%s", self::projectId, self::apiSecret));
         $authentication = "Basic $encoded";
-
         $useragent = $request->headers->get('User-Agent');
-        $remoteAddress = $request->getClientIp();
-        $remoteAddress2 = system("curl -s ipv4.icanhazip.com");
-        $forwarded = $request->headers->get("x-forwarded-for");
-        var_dump("RemoteAddress: $remoteAddress\n");
-        var_dump("RemoteAddress2: $remoteAddress2\n");
-        var_dump("Forwarded: $forwarded\n");
-        #$remoteAddress = "212.204.96.162";
-        var_dump("HIER 3\n");
+        $remoteAddress = system("curl -s ipv4.icanhazip.com");
+
+        //Prepare Corbado request body
         $body = [
             'token' => $token,
             'clientInfo' => [
-                "remoteAddress" => $remoteAddress2,
+                "remoteAddress" => $remoteAddress,
                 "userAgent" => $useragent
             ],
         ];
-        var_dump("HIER 4\n");
 
+        //Execute Corbado request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://api.corbado.com/v1/sessions/verify");
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', "Authorization: $authentication"));
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
-        var_dump("HIER 5\n");
 
-        var_dump($response);
-
-        var_dump("HIER 6\n");
+        //Parse json response from Corbado request
         $data = json_decode($response, true)['data'];
         $userData = json_decode($data['userData'], true);
         $username = $userData['username'];
         $userFullName = $userData['userFullName'];
-        var_dump("HIER 7\n");
 
         //Create session for $username
-
-        //Forward the user to your frontend page
         // Set session value
         $value = "$username:$userFullName";
         $request->getSession()->migrate();
         $request->getSession()->set("user", $value);
-        //    $request->getSession()->set('user', $value);
-        //    $session->set('user', "$username:$userFullName");
-        $response = new Response("<meta http-equiv='refresh' content='0; url=https://d15e-212-204-96-162.eu.ngrok.io/' />");
-        //$response = new Response("selfnsegn");
-        //    $session = $request->getSession();
 
-        return $response;
+        //Forward the user to frontend page
+        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", self::ngrokUrl));
     }
 
     /**
@@ -113,15 +87,12 @@ class BackendController extends AbstractController
      */
     public function passwordVerify(Request $request): Response
     {
-        $method = $_SERVER['REQUEST_METHOD'];
-        var_dump("request method passwordVerify: $method");
-
         $parameters = json_decode($request->getContent(), true);
         $username = $parameters['username'];
         $password = $parameters['password'];
 
         //Check in database if $username and $password match
-        $matches = true;
+        $matches = $password == "1234";
 
         if ($matches) {
             return new Response(status: 200);

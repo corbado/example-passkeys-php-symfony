@@ -23,6 +23,8 @@ class FrontendController extends AbstractController
     {
         $user = $request->getSession()->get('user');
         if (empty($user)) {
+
+            //Redirect user to login page
             return new Response("<meta http-equiv='refresh' content='0; url=http://localhost:8000/login' />");
         }
 
