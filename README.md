@@ -32,21 +32,11 @@ The only thing you need is a CNAME which points to `auth.corbado.com`. We will u
 In the developer panel under `Project settings -> Web component` enter the CNAME you previously created. 
 ![image](https://user-images.githubusercontent.com/23581140/205950309-f6f622e5-94ca-4413-9384-d7a2605da75d.png)
 
-#### 2.2.2. Fill in your backend endpoints
-
-Under `Project settings -> Web component` configure the endpoints as seen in the following image, but use your own ngrok url (the paths stay the same).
-```
-<your-ngrok-url>/api/sessionToken
-<your-ngrok-url>/api/loginInfo
-<your-ngrok-url>/api/passwordVerify
-```
-![image](https://user-images.githubusercontent.com/23581140/205945743-207cd062-bb41-4b3c-af0c-cb13bf279f9c.png)
-
-#### 2.2.3. Authorize origins
+#### 2.2.2. Authorize origins
 Inside the developer panel under `Project settings -> REST API` you need to enter the following origins in order to allow them to share resources.
-1. `https://CNAME`, which represents the Corbado web component
+1. `https://auth.your-company.com`, the CNAME which represents the Corbado web component
 2. `http://localhost:8000`, which is where your backend instance is running
-3. Your ngrok url which connects your local backend to the world
+3. Your ngrok URL which connects your local backend to the internet
 
 ![image](https://user-images.githubusercontent.com/23581140/205950485-6285d536-d676-4382-a23c-c3c0bbfe3de4.png)
 
@@ -81,16 +71,27 @@ You can start your ngrok instance by typing `ngrok http 8000`. In your terminal 
 
 Entering the url which is inside the red rectangle with `/ping` as path should now display "pong" as well since this ngrok url just forwards requests to your local instance.
 
-A few last steps:
-1. Stop your symfony server by pressing `Ctrl+C`
-2. Open [/src/Controller/BackendController.php](https://github.com/corbado/widget-complete-tutorial/blob/master/src/Controller/BackendController.php) locally.
-3. Configure the `projectId` and `apiSecret` constants with the corresponding values from the [Corbado developer panel](https://app.corbado.com). This is required for authentication with the Corbado server. The projectID can be found on the top right of the dev panel (pro-xxxxxxxx) and the apiSecret can be created on the `API credentials` page.
-4. Set the `ngrokUrl` constant to your previously obtained ngrok-url.
-5. Open [/templates/login.html.twig](https://github.com/corbado/widget-complete-tutorial/blob/master/templates/login.html.twig)
-6. Flll in your CNAME in the script's "src"-attribute and the corbado-auth-component's "endpoint" attribute.
+### 2.4. Fill in your backend endpoints
+
+In the developer panel under `Project settings -> Web component` configure the endpoints as seen in the following image, but use your own ngrok URL (the paths stay the same).
+```
+<your-ngrok-url>/api/sessionToken
+<your-ngrok-url>/api/loginInfo
+<your-ngrok-url>/api/passwordVerify
+```
+In our case the ngrok url was `https://d15e-212-204-96-162.eu.ngrok.io`
+![image](https://user-images.githubusercontent.com/23581140/205945743-207cd062-bb41-4b3c-af0c-cb13bf279f9c.png)
+
+### 2.5. Configure .env file
+
+At the top level of this repository you will find the [.env file](https://github.com/corbado/widget-complete-tutorial/blob/master/.env). In there you need to set the following variables:
+1. **CNAME**: Your cname which is "auth.your.company.com" in this tutorial
+2. **PROJECT_ID**: your projectId which can be found on the top right of the dev panel (pro-xxxxxxxxxx)
+3. **API_SECRET**: your apiSecret which can be created on the `API credentials` page
+4. **NGROK_URL** Your ngrok URL which you received a few steps before, which in our case was `https://d15e-212-204-96-162.eu.ngrok.io`
 
 Congrats, you're set! Once you restart your symfony server the authentication process should be fully operational.
 
-### 2.4. Once it's running
+### 2.6. Once it's running
 
 If you now go to your ngrok url you should be forwarded to the `/login` page. There you can sign up / sign in and if authenticated you will be forwarded to the homepage. Have fun!
