@@ -81,7 +81,13 @@ You can start your ngrok instance by typing `ngrok http 8000`. In your terminal 
 
 Entering the url which is inside the red rectangle with `/ping` as path should now display "pong" as well since this ngrok url just forwards requests to your local instance.
 
-Stop your symfony server by pressing `Ctrl+C` and open [/src/Controller/BackendController.php](https://github.com/corbado/widget-complete-tutorial/blob/master/src/Controller/BackendController.php) locally. There you need to configure the `projectId` and `apiSecret` constants with the corresponding values from the [Corbado developer panel](https://app.corbado.com). This is required for authentication with the Corbado server. The projectID can be found on the top right of the dev panel (pro-xxxxxxxx) and the apiSecret can be created on the `API credentials` page. Also set the `ngrokUrl` constant to your previously obtained ngrok-url.
+A few last steps:
+1. Stop your symfony server by pressing `Ctrl+C`
+2. Open [/src/Controller/BackendController.php](https://github.com/corbado/widget-complete-tutorial/blob/master/src/Controller/BackendController.php) locally.
+3. Configure the `projectId` and `apiSecret` constants with the corresponding values from the [Corbado developer panel](https://app.corbado.com). This is required for authentication with the Corbado server. The projectID can be found on the top right of the dev panel (pro-xxxxxxxx) and the apiSecret can be created on the `API credentials` page.
+4. Set the `ngrokUrl` constant to your previously obtained ngrok-url.
+5. Open [/templates/login.html.twig](https://github.com/corbado/widget-complete-tutorial/blob/master/templates/login.html.twig)
+6. Flll in your CNAME in the script's "src"-attribute and the corbado-auth-component's "endpoint" attribute.
 
 Congrats, you're set! Once you restart your symfony server the authentication process should be fully operational.
 
