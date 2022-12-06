@@ -40,4 +40,12 @@ class FrontendController extends AbstractController
         );
 
     }
+
+    /**
+     * @Route("/ping", name="pong", methods="GET")
+     */
+    public function pong(Request $request): Response
+    {
+        return new Response("pong");
+    }
 }

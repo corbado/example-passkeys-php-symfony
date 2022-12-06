@@ -12,6 +12,10 @@ login:
     path: /login
     controller: App\Controller\FrontendController::login
 
+pong:
+    path: /ping
+    controller: App\Controller\FrontendController::pong
+
 # -------- Backend --------
  
 loginInfo:
