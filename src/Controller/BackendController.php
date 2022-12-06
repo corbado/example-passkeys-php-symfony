@@ -14,7 +14,9 @@ class BackendController extends AbstractController
      */
     public function loginInfo(Request $request): Response
     {
-        $username = $request->query->get('username');
+        if (!$this->checkBasicAuth($request)) {
+            return new Response("Unauthorized", 500);
+        }
 
         //Look up in database if $username exists and if $username is blocked/not permitted to login
         $userExists = false;
@@ -82,6 +84,10 @@ class BackendController extends AbstractController
      */
     public function passwordVerify(Request $request): Response
     {
+        if (!$this->checkBasicAuth($request)) {
+            return new Response("Unauthorized", 500);
+        }
+
         $parameters = json_decode($request->getContent(), true);
         $username = $parameters['username'];
         $password = $parameters['password'];
@@ -94,5 +100,13 @@ class BackendController extends AbstractController
         } else {
             return new Response(status: 400);
         }
+    }
+
+    private function checkBasicAuth(Request $request): bool
+    {
+        $username = $request->headers->get('php-auth-user');
+        $password = $request->headers->get('php-auth-pw');
+
+        return $username == $_ENV['HTTP_BASIC_AUTH_USERNAME'] and $password == $_ENV['HTTP_BASIC_AUTH_PASSWORD'];
     }
 }
