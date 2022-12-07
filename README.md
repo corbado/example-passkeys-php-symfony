@@ -118,8 +118,9 @@ At the top level of this repository you will find the [.env file](https://github
 Since everything is configured now, you only need to restart your local symfony server (Press `Ctrl+C` to stop and then enter `symfony server:start` to start the server again) before the authentication process should be fully operational.
 
 If you now go to your ngrok URL you should be forwarded to the `/login` page:
-![image](https://user-images.githubusercontent.com/23581140/206149234-c35d15b9-1e33-4d7d-a91a-2c9f870ffd12.png)
+![image](https://user-images.githubusercontent.com/23581140/206160273-5e0b5936-84e1-42cf-9830-4cfc3c650334.png)
 
 Now you can sign-up / login and if authenticated you will be forwarded to the homepage:
-![image](https://user-images.githubusercontent.com/23581140/205984124-c8698f66-c42e-4089-8214-7fbe604e04cf.png)
+![image](https://user-images.githubusercontent.com/23581140/206160108-590c1934-5e67-464a-a73e-77300733c205.png)
+
 
