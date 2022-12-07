@@ -49,7 +49,7 @@ To verify that your instance is running without errors enter `http://localhost:8
 
 #### 2.2.2. Ngrok
 
-The endpoints of your local system have to be public so Corbado can send requests there. To make your local instance publicly availbale we use [ngrok](https://ngrok.com/download) which is a reverse proxy service. It assigns you a globally availably URL and forwards all incoming requests to your local instance. It can be installed using:
+The endpoints of your local system have to be public so Corbado can send requests there. To make your local instance publicly availbale we use [ngrok](https://ngrok.com/download) which is a reverse proxy service. It assigns you a globally available URL and forwards all incoming requests to your local instance. It can be installed using:
 ```
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
 ```
@@ -74,10 +74,10 @@ In the developer panel under `Project settings -> Web component` enter the CNAME
 ![image](https://user-images.githubusercontent.com/23581140/205950309-f6f622e5-94ca-4413-9384-d7a2605da75d.png)
 
 #### 2.3.2. Authorize origins
-Inside the developer panel under `Project settings -> REST API` you need to enter the following origins in order to allow them to share resources.
-1. `https://auth.your-company.com`, the CNAME which represents the Corbado web component
-2. `http://localhost:8000`, which is where your backend instance is running
-3. Your ngrok URL which connects your local backend to the internet
+Inside the developer panel under `Project settings -> REST API` you need to enter the following origins in order to have them whitelisted for your Corbado project.
+1. `https://auth.your-company.com`, the CNAME which points to auth.corbado.com
+2. `http://localhost:8000`, which is where your local symfony server hosting this sample application is running
+3. Your ngrok URL (in our case `https://d15e-212-204-96-162.eu.ngrok.io`) which connects your local application to the internet
 
 ![image](https://user-images.githubusercontent.com/23581140/205950485-6285d536-d676-4382-a23c-c3c0bbfe3de4.png)
 
@@ -89,29 +89,29 @@ In the developer panel under `Project settings -> Web component` configure the e
 <your-ngrok-url>/api/loginInfo
 <your-ngrok-url>/api/passwordVerify
 ```
-In our case the ngrok url was `https://d15e-212-204-96-162.eu.ngrok.io`
+In our case the ngrok URL was `https://d15e-212-204-96-162.eu.ngrok.io`
 ![image](https://user-images.githubusercontent.com/23581140/205945743-207cd062-bb41-4b3c-af0c-cb13bf279f9c.png)
 
 #### 2.3.4. Configure basic auth
 
-The loginInfo and sessionToken endpoints should only be accessible via http basic auth. In your own projects you can come up with your own username and password which have to be entered into the developer panel under `Project settings -> Web component`. In this sample implementation we predefined `basicusername` and `basicpassword` as credentials, so these are the values you have to enter:
+The loginInfo and sessionToken endpoints should only be accessible via HTTP basic auth. In your own projects you can come up with your own username and password which have to be entered into the developer panel under `Project settings -> Web component`. In this sample implementation we predefined `basicusername` and `basicpassword` as credentials, so these are the values you have to enter:
 ![image](https://user-images.githubusercontent.com/23581140/205995437-34a838e9-10e5-446d-817b-8d9005a3d764.png)
 
 ### 2.4. Configure .env file
 
 At the top level of this repository you will find the [.env file](https://github.com/corbado/widget-complete-tutorial/blob/master/.env). In there you need to set the following variables:
-1. **CNAME**: Your cname which is "auth.your.company.com" in this tutorial
-2. **PROJECT_ID**: your projectId which can be found on the top right of the dev panel (pro-xxxxxxxxxx)
-3. **API_SECRET**: your apiSecret which can be created on the `API credentials` page
-4. **NGROK_URL** Your ngrok URL which you received a few steps before (in our case `https://d15e-212-204-96-162.eu.ngrok.io`)
-5. (Optional) **HTTP_BASIC_AUTH_USERNAME**: If you change the username here, you also have to enter the new value into the dev panel, as seen in 2.3.4..
-5. (Optional) **HTTP_BASIC_AUTH_PASSWORD**: If you change the password here, you also have to enter the new value into the dev panel, as seen in 2.3.4..
+1. **CNAME**: Your cname which is "auth.your-company.com" in this tutorial
+2. **PROJECT_ID**: your project ID which can be found on the top right of the developer panel (pro-xxxxxxxxxx)
+3. **API_SECRET**: your API secret which can be created on the `API credentials` page
+4. **NGROK_URL** Your ngrok URL which you received in step 2.2.2. (in our case `https://d15e-212-204-96-162.eu.ngrok.io`)
+5. (Optional) **HTTP_BASIC_AUTH_USERNAME**: If you change the username here, you also have to enter the new value into the developer panel, as seen in 2.3.4..
+5. (Optional) **HTTP_BASIC_AUTH_PASSWORD**: If you change the password here, you also have to enter the new value into the developer panel, as seen in 2.3.4..
 
-Congrats, you're set! Once you restart your symfony server the authentication process should be fully operational.
+### 2.5. Re-Run the application
 
-### 2.5. Once it's running
+Since everything is configured now, you only need to restart your local symfony server (Press `Ctrl+C` and then enter `symfony server:start` again) before the authentication process should be fully operational.
 
-If you now go to your ngrok URL you should be forwarded to the `/login` page. There you can sign up / sign in and if authenticated you will be forwarded to the homepage which looks like this (With a different ngrok URL of course):
+If you now go to your ngrok URL you should be forwarded to the `/login` page. There you can sign-up / login and if authenticated you will be forwarded to the homepage which looks like this (With a different ngrok URL of course):
 
 ![image](https://user-images.githubusercontent.com/23581140/205984124-c8698f66-c42e-4089-8214-7fbe604e04cf.png)
 
