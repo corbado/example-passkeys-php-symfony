@@ -1,8 +1,8 @@
 # Complete integration sample for the Corbado web component
-This is a sample implementation of frontend and backend where the Corbado web component is integrated.
+This is a sample implementation of frontend and backend where the Corbado web component is integrated. You can see the live demo [here](TODO: Link einfügen wenn online)
 
 >**Warning**
->In this tutorial a customer system is built with no preexisting user base, which is effecively realized by having the loginInfo endpoint always return a 404 code when given a username. In case you have an existing user base, you just need to modify this endpoint to return other status codes as well, as described in our [docs](Link wenn online)
+>In this tutorial a customer system is built with no preexisting user base, which is effecively realized by having the loginInfo endpoint always return a 404 code when given a username. In case you have an existing user base, you just need to modify this endpoint to return other status codes as well, as described in our [docs](TODO: Link einfügen wenn online)
 
 ## 1. File structure
     .
@@ -15,19 +15,25 @@ This is a sample implementation of frontend and backend where the Corbado web co
     │   └── └── FrontendController.php  # Manages endpoints for frontend
     ├── templates                     
     │   ├── home.html.twig              # Home page which you only get to see if you are logged in
-    │   └── login.html.twig             # Login page which contains the Corbado web component
+    │   └── login.html.twig             # Login page which contains the Corbado web component; Acts as landing page if you are not logged in
     └── ...
 
 ## 2. How to use
 >**Warning**
->This sample code corresponds to our [web component integration tutorial](Link wenn online), please read it first in order to understand the flows and business logic!
+>This sample code corresponds to our [web component integration tutorial](TODO: Link einfügen wenn online), please read it first in order to understand the flows and business logic!
+
+>**Warning**
+>All commands listed in this tutorial can be executed in linux/mac. If you use windows or have trouble installing, just klick on the name of whatever you are installing. This should lead you to the download-page/installation guide of that software.
 
 ### 2.1. CNAME
 The only thing you need to create is a CNAME which points to `auth.corbado.com`. We will use `auth.your-company.com` in this tutorial. More info on what a CNAME is and why it is needed can be found in our [docs](https://docs.corbado.com/integrations/web-component#1.-define-cname).
 
 ### 2.2. Setup
 
-#### 2.2.1. PHP Symfony
+#### 2.2.1 Clone repository
+Download the repository code by executing `git clone https://github.com/corbado/widget-complete-tutorial.git`.
+
+#### 2.2.2. PHP Symfony
 To start the local development server your system requires [PHP](https://www.php.net/manual/en/install.php) and [Symfony](https://symfony.com/download):
 ```
 brew install php
@@ -47,14 +53,14 @@ You should now be able to run this demo by typing `symfony server:start` into yo
 ![image](https://user-images.githubusercontent.com/23581140/205909459-7ed3d679-b313-40d3-85be-1178b80a1594.png)
 To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, you can continue with the next step.
 
-#### 2.2.2. Ngrok
+#### 2.2.3. Ngrok
 
 The endpoints of your local system have to be public so Corbado can send requests there. To make your local instance publicly availbale we use [ngrok](https://ngrok.com/download) which is a reverse proxy service. It assigns you a globally available URL and forwards all incoming requests to your local instance. It can be installed using:
 ```
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
 ```
 
-You can start your ngrok instance by typing `ngrok http 8000`. In your terminal you should see the following:
+Since symfony in default launches its server on port 8000, we will use the ngrok service on that port. You can start your ngrok instance on port 8000 by typing `ngrok http 8000`. In your terminal you should see the following:
 ![image](https://user-images.githubusercontent.com/23581140/205919914-986f95ea-7c32-4501-a651-f47b16e3b2e2.png)
 
 Entering the URL which is inside the red rectangle with `/ping` as path (In our case `https://d15e-212-204-96-162.eu.ngrok.io/ping`) should now display "pong" as well since this ngrok URL just forwards requests to your local instance.
@@ -109,9 +115,11 @@ At the top level of this repository you will find the [.env file](https://github
 
 ### 2.5. Re-Run the application
 
-Since everything is configured now, you only need to restart your local symfony server (Press `Ctrl+C` and then enter `symfony server:start` again) before the authentication process should be fully operational.
+Since everything is configured now, you only need to restart your local symfony server (Press `Ctrl+C` to stop and then enter `symfony server:start` to start the server again) before the authentication process should be fully operational.
 
-If you now go to your ngrok URL you should be forwarded to the `/login` page. There you can sign-up / login and if authenticated you will be forwarded to the homepage which looks like this (With a different ngrok URL of course):
+If you now go to your ngrok URL you should be forwarded to the `/login` page:
+![image](https://user-images.githubusercontent.com/23581140/206149234-c35d15b9-1e33-4d7d-a91a-2c9f870ffd12.png)
 
+Now you can sign-up / login and if authenticated you will be forwarded to the homepage:
 ![image](https://user-images.githubusercontent.com/23581140/205984124-c8698f66-c42e-4089-8214-7fbe604e04cf.png)
 
