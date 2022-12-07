@@ -1,4 +1,7 @@
 {
+    "corbado/client-php": {
+        "version": "dev-main"
+    },
     "symfony/console": {
         "version": "6.1",
         "recipe": {
