@@ -28,7 +28,7 @@ The only thing you need to create is a CNAME which points to `auth.corbado.com`.
 ### 2.2. Setup
 
 >**Warning**
->All commands listed in this tutorial can be executed in linux/mac. If you use windows or have trouble installing, just klick on the name of whatever you wanted to install. This should lead you to the download-page/installation guide of that program/software.
+>All commands listed in this tutorial can be executed in linux/macOS. If you use windows or have trouble installing, just klick on the name of whatever you wanted to install. This should lead you to the download-page/installation guide of that program/software.
 
 #### 2.2.1 Clone repository
 Download the repository code by executing `git clone https://github.com/corbado/widget-complete-tutorial.git`.
