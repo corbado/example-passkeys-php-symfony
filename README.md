@@ -22,13 +22,13 @@ This is a sample implementation of frontend and backend where the Corbado web co
 >**Warning**
 >This sample code corresponds to our [web component integration tutorial](TODO: Link einfügen wenn online), please read it first in order to understand the flows and business logic!
 
->**Warning**
->All commands listed in this tutorial can be executed in linux/mac. If you use windows or have trouble installing, just klick on the name of whatever you are installing. This should lead you to the download-page/installation guide of that software.
-
 ### 2.1. CNAME
 The only thing you need to create is a CNAME which points to `auth.corbado.com`. We will use `auth.your-company.com` in this tutorial. More info on what a CNAME is and why it is needed can be found in our [docs](https://docs.corbado.com/integrations/web-component#1.-define-cname).
 
 ### 2.2. Setup
+
+>**Warning**
+>All commands listed in this tutorial can be executed in linux/mac. If you use windows or have trouble installing, just klick on the name of whatever you are installing. This should lead you to the download-page/installation guide of that software.
 
 #### 2.2.1 Clone repository
 Download the repository code by executing `git clone https://github.com/corbado/widget-complete-tutorial.git`.
