@@ -1,12 +1,14 @@
 {
     "type": "project",
     "license": "proprietary",
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "corbado/client-php": "dev-main",
+        "guzzlehttp/guzzle": "^7.5",
         "symfony/console": "6.1.*",
         "symfony/dotenv": "6.1.*",
         "symfony/flex": "^2",
@@ -66,5 +68,11 @@
             "allow-contrib": false,
             "require": "6.1.*"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:corbado/client-php"
+        }
+    ]
 }
