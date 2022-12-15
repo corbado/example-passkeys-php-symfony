@@ -88,6 +88,8 @@ In this example implementation we predefined `basicusername` and `basicpassword`
 
 ### 3. Usage
 
+After step 2.4.4. your local server should be fully funcional.
+
 If you now go to your ngrok URL you should be forwarded to the `/login` page:
 ![image](https://user-images.githubusercontent.com/23581140/206202277-80ea9af6-c2de-456a-abed-febc622be291.png)
 
