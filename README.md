@@ -30,7 +30,7 @@ Create a CNAME which points to `auth.corbado.com` as described [here](TODO: Link
 
 #### 2.1.2. Create a Corbado project.
 
-Please create a project as well as an API secret for that project inside our [developer panel](https://app.corbado.com) as shown in our [docs](TODO: Link).
+Go to our [developer panel](https://app.corbado.com) and create an account. Afterwards create a project as well as an API secret for that project as shown in our [docs](TODO: Link).
 You will need the project ID (pro-xxxxxxxx) and your API secret in the next steps.
 
 ### 2.2. Setup ngrok
@@ -95,6 +95,3 @@ If you now go to your ngrok URL you should be forwarded to the `/login` page:
 
 Now you can sign-up / login and if authenticated you will be forwarded to the homepage:
 ![image](https://user-images.githubusercontent.com/23581140/206202557-87be3808-9e76-444d-a9ff-229e19bdd61e.png)
-
-
-
