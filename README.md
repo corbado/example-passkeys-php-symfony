@@ -9,6 +9,8 @@ This is a sample implementation of frontend and backend where the Corbado web co
     ├── ...
     ├── config                        
     │   └── routes.yaml                 # Assigns paths to controller methods    
+    ├── docker                        
+    │   └── .env                        # Contains all docker environment variables   
     ├── src                             
     │   ├── Controller                  
     │   │   ├── BackendController.php   # Manages endpoints for backend
@@ -27,30 +29,17 @@ The only thing you need to create is a CNAME which points to `auth.corbado.com`.
 
 ### 2.2. Setup
 
->**Warning**
->All commands listed in this tutorial can be executed in linux/macOS. If you use windows or have trouble installing, just klick on the name of whatever you wanted to install. This should lead you to the download-page/installation guide of that program/software.
+**Note:** Before continuing, please ensure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and accessible from your shell.
 
-#### 2.2.1 Clone repository
-Download the repository code by executing `git clone https://github.com/corbado/widget-complete-tutorial.git`.
-
-#### 2.2.2. PHP Symfony
-To start the local development server your system requires [PHP](https://www.php.net/manual/en/install.php) and [Symfony](https://symfony.com/download):
+Before running you need to build the container. Do so by executing:
 ```
-brew install php
-brew install symfony-cli/tap/symfony-cli
+docker build . -t corbado-webcomponent-example
+```
+After building you can execute the container as follows:
+```
+docker run -p 8000:80 --env-file=docker/.env -it --rm corbado-webcomponent-example
 ```
 
-You then need to install [Composer](https://getcomposer.org/download/):
-```
-curl -sS https://getcomposer.org/installer | php
-```
-With Composer you should be able to install all required packages for this project:
-```
-sudo -E env "PATH=$PATH" php composer.phar install
-```
-
-You should now be able to run this demo by typing `symfony server:start` into your console while being located in the root directory of this repository. If the setup was done correctly, the following messages should appear in your terminal:
-![image](https://user-images.githubusercontent.com/23581140/205909459-7ed3d679-b313-40d3-85be-1178b80a1594.png)
 To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, you can continue with the next step.
 
 #### 2.2.3. Ngrok
