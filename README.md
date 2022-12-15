@@ -30,7 +30,7 @@ Create a CNAME which points to `auth.corbado.com` as described [here](TODO: Link
 
 #### 2.1.2. Create a Corbado project.
 
-Go to our [developer panel](https://app.corbado.com) and create an account. Afterwards create a project as well as an API secret for that project as shown in our [docs](TODO: Link).
+Go to our [developer panel](https://app.corbado.com) and create a free account. Afterwards create a project as well as an API secret for that project as shown in our [docs](TODO: Link).
 You will need the project ID (pro-xxxxxxxx) and your API secret in the next steps.
 
 ### 2.2. Setup ngrok
