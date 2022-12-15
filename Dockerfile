@@ -5,10 +5,17 @@ ENV HTTP_BASIC_AUTH_USERNAME=\
     CNAME=\
     PROJECT_ID=\
     API_SECRET=\
-    NGROK_URL=
+    NGROK_URL=\
+    MYSQL_USERNAME=\
+    MYSQL_PASSWORD=
+
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+
 
 ADD docker/default.conf /etc/apache2/sites-available/000-default.conf
 
