@@ -40,7 +40,7 @@ class BackendController extends AbstractController
     {
         $token = $request->query->get('sessionToken');
         $useragent = $request->headers->get('User-Agent');
-        $remoteAddress = system("curl -s ipv4.icanhazip.com");
+        $remoteAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
 
         $apiClient = new Client("https://api.corbado.com/v1", $_ENV["PROJECT_ID"], $_ENV["API_SECRET"]);
         $result = $apiClient->widget()->sessionVerify($token, $remoteAddress, $useragent);
