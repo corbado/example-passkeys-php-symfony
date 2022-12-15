@@ -50,17 +50,13 @@ Inside /docker/.env you have to configure the following variables:
 5. (Optional) **HTTP_BASIC_AUTH_USERNAME**: If you change the username here, you also have to enter the new value into the developer panel, as seen in 2.4.4.
 5. (Optional) **HTTP_BASIC_AUTH_PASSWORD**: If you change the password here, you also have to enter the new value into the developer panel, as seen in 2.4.4.
 
-#### 2.3.2. Start docker container
+#### 2.3.2. Start docker containers
 
 **Note:** Before continuing, please ensure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and accessible from your shell.
 
-First you need to build the container:
+Use the following command to get start the system:
 ```
-docker build . -t corbado-webcomponent-example
-```
-After building you can execute the container:
-```
-docker run -p 8000:80 --env-file=docker/.env -it --rm corbado-webcomponent-example
+docker compose up -d
 ```
 
 To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://eb70-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
