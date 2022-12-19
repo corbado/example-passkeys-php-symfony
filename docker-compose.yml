@@ -11,7 +11,7 @@ services:
       MYSQL_PASSWORD: db_user_pass
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      timeout: 5s
+      timeout: 10s
       retries: 10
     ports:
       - "6033:3306"
