@@ -51,7 +51,7 @@ After step 2.3. your local server should be fully funcional.
 
 If you now visit your ngrok URL you should be forwarded to the `/login` page:
 
-![image](https://user-images.githubusercontent.com/23581140/206202277-80ea9af6-c2de-456a-abed-febc622be291.png)
+![image](https://user-images.githubusercontent.com/23581140/208479745-4dc9acaa-cc43-4324-bfd4-ad2ecf0f7901.png)
 
 You can login with one of the existing accounts or sign-up yourself.
 
@@ -63,9 +63,9 @@ You can login with one of the existing accounts or sign-up yourself.
 
 When authenticated you will be forwarded to the homepage:
 
-![image](https://user-images.githubusercontent.com/23581140/206202557-87be3808-9e76-444d-a9ff-229e19bdd61e.png)
+![image](https://user-images.githubusercontent.com/23581140/208479917-e82f06a9-98d1-406d-89d5-aaceb6bdbb2b.png)
 
 On [localhost:8081](http://localhost:8081) a PHPMyAdmin instance is running where you can view all registered users:
 
-![image](https://user-images.githubusercontent.com/23581140/208470620-588906ed-6461-46d5-9cb4-504262148b64.png)
+![image](https://user-images.githubusercontent.com/23581140/208480126-65f84460-8914-40e8-a964-ac48bfdeec2f.png)
 
