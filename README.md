@@ -64,4 +64,7 @@ When authenticated you will be forwarded to the homepage:
 
 ![image](https://user-images.githubusercontent.com/23581140/206202557-87be3808-9e76-444d-a9ff-229e19bdd61e.png)
 
-On [localhost:8081](http://localhost:8081)
+On [localhost:8081](http://localhost:8081) a PHPMyAdmin instance is running where you can view all registered users.
+
+![image](https://user-images.githubusercontent.com/23581140/208470620-588906ed-6461-46d5-9cb4-504262148b64.png)
+
