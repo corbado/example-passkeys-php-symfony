@@ -1,110 +1,116 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
+use Corbado\Client;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 class BackendController extends AbstractController
 {
-    /**
-     * @Route("/corbado/loginInfo", name="loginInfo", methods="GET")
-     */
-    public function loginInfo(Request $request): Response
+
+    public function __construct(private ManagerRegistry $doctrine)
     {
+    }
+
+    /**
+     * @Route("/api/loginInfo", name="loginInfo", methods="GET")
+     */
+    public function loginInfo(UserRepository $userRepo, Request $request): Response
+    {
+        if (!$this->checkBasicAuth($request)) {
+            return new Response("Unauthorized", 500);
+        }
+
         $username = $request->query->get('username');
+        $user = $userRepo->findOneBy(['email' => $username]);
 
         //Look up in database if $username exists and if $username is blocked/not permitted to login
-        $userExists = true;
-        $userBlocked = false;
 
-        //Send response
-        if ($userBlocked) {
-            return new Response(status: 403);
-        }
-        if (!$userExists) {
+        if ($user == null) {
             return new Response(status: 404);
         }
+        if ($user->isBlocked()) {
+            return new Response(status: 403);
+        }
+
         return new Response(status: 200);
     }
 
     /**
-     * @Route("/corbado/sessionToken", name="sessionToken", methods="GET")
+     * @Route("/api/sessionToken", name="sessionToken", methods="GET")
      */
-    public function sessionToken(Request $request): Response
+    public function sessionToken(UserRepository $userRepo, Request $request, SessionInterface $session): Response
     {
         $token = $request->query->get('sessionToken');
-
-        $projectId = 'pro-1234';
-        $apiSecret = 'xxxx';
-        $encoded = base64_encode("$projectId:$apiSecret");
-        $authentication = "Basic $encoded";
-
         $useragent = $request->headers->get('User-Agent');
-        $remoteAddress = $request->getClientIp();
-        $body = [
-            'token' => $token,
-            'clientInfo' => [
-                "remoteAddress" => "127.0.0.1",
-                "userAgent" => "Mozilla"
-            ],
-        ];
+        $remoteAddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://api.corbado.com/v1/sessions/verify");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', "Authorization: $authentication"));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
+        $apiClient = new Client("https://api.corbado.com/v1", $_ENV["PROJECT_ID"], $_ENV["API_SECRET"]);
+        $result = $apiClient->widget()->sessionVerify($token, $remoteAddress, $useragent);
+        $response = $result->getData()->getUserData();
 
-        $data = json_decode($response, true)['data'];
-        $userData = json_decode($data['userData'], true);
+        //Parse json response from Corbado request
+        $userData = json_decode($response, true);
         $username = $userData['username'];
         $userFullName = $userData['userFullName'];
 
+        //Create user if not exists
+        $user = $userRepo->findOneBy(['email' => $username]);
+        if ($user == null) {
+            $em = $this->doctrine->getManager();
+            $em->persist(new User($userFullName, $username));
+            $em->flush();
+        }
+
         //Create session for $username
-        $session = "your-session";
+        // Set session value
+        $value = "$username:$userFullName";
+        $request->getSession()->migrate();
+        $request->getSession()->set("user", $value);
 
-        //Forward the user to your frontend page
-        return new Response("<meta http-equiv='refresh' content='0; url=https://app.your-company.com?session=$session' />");
-    }
-
-    public function old(Request $request)
-    {
-        $token = $request->query->get('sessionToken');
-
-        $projectId = '';
-        $apiSecret = '';
-        $authentication = 'Basic ' + base64_encode("$projectId: $apiSecret");
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://api.corbado.com/v1/sessions/verify?sessionToken=$token");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', "Authorization: $authentication"));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        $response = curl_exec($ch);
-        $data = json_decode($response);
-        print($data);
+        //Forward the user to frontend page
+        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", $_ENV['NGROK_URL']));
     }
 
     /**
-     * @Route("/corbado/passwordVerify", name="passwordVerify", methods="POST")
+     * @Route("/api/passwordVerify", name="passwordVerify", methods="POST")
      */
-    public function passwordVerify(Request $request): Response
+    public function passwordVerify(UserRepository $userRepo, Request $request): Response
     {
+        if (!$this->checkBasicAuth($request)) {
+            return new Response("Unauthorized", 500);
+        }
+
         $parameters = json_decode($request->getContent(), true);
         $username = $parameters['username'];
         $password = $parameters['password'];
 
-        //Check in database if $username and $password match
-        $matches = true;
+        $user = $userRepo->findOneBy(['email' => $username]);
+
+        if ($user == null) {
+            return new Response(status: 404);
+        }
+
+        $matches = $password == $user->getPassword();
 
         if ($matches) {
             return new Response(status: 200);
         } else {
             return new Response(status: 400);
         }
+    }
+
+    private function checkBasicAuth(Request $request): bool
+    {
+        $username = $request->headers->get('php-auth-user');
+        $password = $request->headers->get('php-auth-pw');
+
+        return $username == $_ENV['HTTP_BASIC_AUTH_USERNAME'] and $password == $_ENV['HTTP_BASIC_AUTH_PASSWORD'];
     }
 }

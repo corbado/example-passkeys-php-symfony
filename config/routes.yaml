@@ -4,22 +4,30 @@ controllers:
 
 # -------- Frontend --------
 
+home:
+    path: /
+    controller: App\Controller\FrontendController::home
+
 login:
     path: /login
     controller: App\Controller\FrontendController::login
 
+pong:
+    path: /ping
+    controller: App\Controller\FrontendController::pong
+
 # -------- Backend --------
  
 loginInfo:
-    path: /corbado/loginInfo
+    path: /api/loginInfo
     controller: App\Controller\BackendController::loginInfo
 
 
 sessionToken:
-    path: /corbado/sessionToken
+    path: /api/sessionToken
     controller: App\Controller\BackendController::sessionToken
 
 
 passwordVerify:
-    path: /passwordVerify
+    path: /api/passwordVerify
     controller: App\Controller\BackendController::passwordVerify
