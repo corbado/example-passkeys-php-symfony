@@ -31,7 +31,7 @@ Use the values you obtained in step 2.1. to configure the following variables in
 1. **CNAME**: The individually generated CNAME.
 2. **PROJECT_ID**: The project ID.
 3. **API_SECRET**: The API secret.
-4. **NGROK_URL** Your individual ngrok URL (e.g. `https://eb70-212-204-96-162.eu.ngrok.io`)
+4. **NGROK_URL** Your individual ngrok URL (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io`)
 
 ### 2.3. Start Docker containers
 
@@ -43,13 +43,15 @@ docker compose up
 ```
 **Note:** Please wait until all containers are ready. This can take some time.
 
-To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok URL with `/ping` as path (e.g. `https://eb70-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well:
+To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok URL with `/ping` as path (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well:
 
 ![image](https://user-images.githubusercontent.com/23581140/208480558-c1bcde88-164e-4a22-97de-240fd93af4c1.png)
 
-### 3. Usage
+## 3. Usage
 
 After step 2.3. your local server should be fully functional.
+
+### 3.1. Test authentication
 
 If you now visit your ngrok URL you should be forwarded to the `/login` page:
 
@@ -66,6 +68,8 @@ You can login with one of the existing accounts or sign-up yourself.
 When authenticated you will be forwarded to the homepage:
 
 ![image](https://user-images.githubusercontent.com/23581140/208479917-e82f06a9-98d1-406d-89d5-aaceb6bdbb2b.png)
+
+### 3.2. View all users
 
 On [localhost:8081](http://localhost:8081) a PHPMyAdmin instance is running where you can view all registered users:
 
