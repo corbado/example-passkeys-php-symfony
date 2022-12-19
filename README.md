@@ -1,7 +1,7 @@
 # Complete integration sample for the Corbado web component
 This is a sample implementation of frontend and backend where the Corbado web component is integrated. You can see the live demo [here](TODO: Link einfügen wenn online)
 
-**Note:** In this tutorial a customer system was built with some preexisting password-based users. Have a look at our [docs](TODO:Link) to see the changes you have to make if you don't have any users yet. (Gets even easier then)
+**Note:** In this tutorial a customer system was built with some preexisting password-based users. Have a look at our [docs](TODO: Link einfügen) to see the changes you have to make if you don't have any users yet.
 
 ## 1. File structure
     .
@@ -23,7 +23,7 @@ This is a sample implementation of frontend and backend where the Corbado web co
 
 ### 2.1. Prerequisites
 
-Please follow the steps in our [setup guide](TODO:Link) to create and configure a project in our [developer panel](https://app.corabdo.com).
+Please follow the steps in our [setup guide](TODO: Link) to create and configure a project in our [developer panel](https://app.corabdo.com).
 
 ### 2.2. Configure environment variables
 
@@ -39,8 +39,9 @@ Use the values you obtained in step 2.1. to configure the following variables in
 
 Use the following command to start the system:
 ```
-docker compose up -d
+docker compose up
 ```
+**Note:** Please wait until all systems are ready. This can take some time if you have an older system.
 
 To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
 
