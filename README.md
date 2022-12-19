@@ -9,7 +9,7 @@ This is a sample implementation of frontend and backend where the Corbado web co
     ├── config                        
     │   └── routes.yaml                 # Assigns paths to controller methods    
     ├── docker                        
-    │   └── .env                        # Contains all docker environment variables   
+    │   └── .env                        # Contains all Docker environment variables   
     ├── src                             
     │   ├── Controller                  
     │   │   ├── BackendController.php   # Manages endpoints for backend
@@ -27,13 +27,13 @@ Please follow the steps in our [setup guide](TODO: Link) to create and configure
 
 ### 2.2. Configure environment variables
 
-Use the values you obtained in step 2.1. to configure the following variables inside /docker/.env:
+Use the values you obtained in step 2.1. to configure the following variables inside `/docker/.env`:
 1. **CNAME**: The individually generated CNAME.
 2. **PROJECT_ID**: The project ID.
 3. **API_SECRET**: The API secret.
 4. **NGROK_URL** Your individual ngrok URL (e.g. `https://eb70-212-204-96-162.eu.ngrok.io`)
 
-### 2.3. Start docker containers
+### 2.3. Start Docker containers
 
 **Note:** Before continuing, please ensure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and accessible from your shell.
 
@@ -41,17 +41,19 @@ Use the following command to start the system:
 ```
 docker compose up
 ```
-**Note:** Please wait until all systems are ready. This can take some time if you have an older system.
+**Note:** Please wait until all containers are ready. This can take some time.
 
-To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://eb70-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
+To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok URL with `/ping` as path (e.g. `https://eb70-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well:
+
+![image](https://user-images.githubusercontent.com/23581140/208480558-c1bcde88-164e-4a22-97de-240fd93af4c1.png)
 
 ### 3. Usage
 
-After step 2.3. your local server should be fully funcional.
+After step 2.3. your local server should be fully functional.
 
 If you now visit your ngrok URL you should be forwarded to the `/login` page:
 
-![image](https://user-images.githubusercontent.com/23581140/206202277-80ea9af6-c2de-456a-abed-febc622be291.png)
+![image](https://user-images.githubusercontent.com/23581140/208479745-4dc9acaa-cc43-4324-bfd4-ad2ecf0f7901.png)
 
 You can login with one of the existing accounts or sign-up yourself.
 
@@ -63,9 +65,9 @@ You can login with one of the existing accounts or sign-up yourself.
 
 When authenticated you will be forwarded to the homepage:
 
-![image](https://user-images.githubusercontent.com/23581140/206202557-87be3808-9e76-444d-a9ff-229e19bdd61e.png)
+![image](https://user-images.githubusercontent.com/23581140/208479917-e82f06a9-98d1-406d-89d5-aaceb6bdbb2b.png)
 
-On [localhost:8081](http://localhost:8081) a PHPMyAdmin instance is running where you can view all registered users.
+On [localhost:8081](http://localhost:8081) a PHPMyAdmin instance is running where you can view all registered users:
 
-![image](https://user-images.githubusercontent.com/23581140/208470620-588906ed-6461-46d5-9cb4-504262148b64.png)
+![image](https://user-images.githubusercontent.com/23581140/208480126-65f84460-8914-40e8-a964-ac48bfdeec2f.png)
 
