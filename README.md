@@ -1,7 +1,7 @@
 # Complete integration sample for the Corbado web component
 This is a sample implementation of frontend and backend where the Corbado web component is integrated. You can see the live demo [here](TODO: Link einfügen wenn online)
 
-**Note:** In this tutorial a customer system was built with no preexisting user base, which is effecively realized by having the loginInfo endpoint always return a 404 code when given a username. In case you have an existing user base, you just need to modify this endpoint to return other status codes as well, as described in our [docs](https://docs.corbado.com/integrations/web-component/existing-user-base#2.-login-information)
+**Note:** In this tutorial a customer system was built with some preexisting password-based users. Have a look at our [docs](TODO:Link) to see the changes you have to make if you don't have any users yet. (Gets even easier then)
 
 ## 1. File structure
     .
@@ -25,69 +25,54 @@ This is a sample implementation of frontend and backend where the Corbado web co
 
 ### 2.1. Prerequisites
 
-#### 2.1.1. Create CNAME
-Create a CNAME which points to `auth.corbado.com` as described [here](TODO: Link).
-
-#### 2.1.2. Create a Corbado project.
-
-Go to our [developer panel](https://app.corbado.com) and create a free account. Afterwards create a project as well as an API secret for that project as shown in our [docs](TODO: Link).
-You will need the project ID (pro-xxxxxxxx) and your API secret in the next steps.
+Please create a free account as well as a project inside our [developer panel](https//app.corbado.com) according to our [docs](TODO:Link). You will need the project's ID, API secret and individually generated CNAME in the next steps.
 
 ### 2.2. Setup ngrok
 
-Please use our [guide](Link to docs) to configure the reverse proxy service ngrok which enables your local server to receive requests from the internet.
-The local server (see next step) will be available at http://localhost:8000. Therefore you have to launch the ngrok service on port 8000 by entering `ngrok http 8000`. Ngrok will provide you with a personal url which you will need in the next steps.
+Please use our [guide](Link to docs) to configure the reverse proxy service ngrok.
 
-### 2.3. Start local server
+### 2.3. Configure Corbado project
+Please navigate to our configure your Corbado project as shown [here](https://app.corbado.com).
 
-#### 2.3.1. Configure environment variables
+### 2.4. Start local server
+
+#### 2.4.1. Configure environment variables
 
 Inside /docker/.env you have to configure the following variables:
-1. **CNAME**: The CNAME you created in step 2.1.1.
-2. **PROJECT_ID**: your project ID from step 2.1.2.
-3. **API_SECRET**: your API secret from step 2.1.2.
+1. **CNAME**: The individually generated CNAME of step 2.1.
+2. **PROJECT_ID**: The project ID of step 2.1.
+3. **API_SECRET**: The API secret of step 2.1.
 4. **NGROK_URL** Your ngrok URL which you received in step 2.2. (in our case `https://eb70-212-204-96-162.eu.ngrok.io`)
 5. (Optional) **HTTP_BASIC_AUTH_USERNAME**: If you change the username here, you also have to enter the new value into the developer panel, as seen in 2.4.4.
 5. (Optional) **HTTP_BASIC_AUTH_PASSWORD**: If you change the password here, you also have to enter the new value into the developer panel, as seen in 2.4.4.
 
-#### 2.3.2. Start docker containers
+#### 2.4.2. Start docker containers
 
 **Note:** Before continuing, please ensure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and accessible from your shell.
 
-Use the following command to get start the system:
+Use the following command to start the system:
 ```
 docker compose up -d
 ```
 
 To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://eb70-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
 
-### 2.4. Configure Corbado project
-Please navigate to the [developer panel](https://app.corbado.com) and select the project you created in step 2.1.2.
-
-#### 2.4.1. Add CNAME to your project
-Add the CNAME you created in step 2.1. to your Corbado project as described [here](TODO: Link).
-
-#### 2.4.2. Set URLs of your endpoints
-Info on how to configure the endpoints can be found [here](TODO: Link). The endpoints of this server are predefined and can be reached via your ngrok url. As a result the URLs you have to enter into the developer panel are:
-- `<ngrok-url>/api/loginInfo` (e.g.: `https://eb70-212-204-96-162.eu.ngrok.io/api/loginInfo`)
-- `<ngrok-url>/api/passwordVerify`
-- `<ngrok-url>/api/sessionToken`
-
-#### 2.4.3. Authorize origins
-Information about authorizing origins can be found [here](TODO: Link). Inside the developer panel under `Project settings -> REST API` you need to enter the following origins in order to have them whitelisted for your Corbado project.
-1. `https://auth.your-company.com`, the CNAME from step 2.1.1. which points to auth.corbado.com
-2. `http://localhost:8000`, which is where your local server hosting this sample application is running
-3. Your ngrok URL (in our case `https://eb70-212-204-96-162.eu.ngrok.io`) which connects your local server to the internet
-
-#### 2.4.4. Configure basic auth
-In this example implementation we predefined `basicusername` and `basicpassword` as credentials, so these are the values you have to enter. See [here](TODO: Link) why it is needed and how to configure your Corbado project accordingly. 
-
 ### 3. Usage
 
-After step 2.4.4. your local server should be fully funcional.
+After step 2.4.2. your local server should be fully funcional.
 
 If you now go to your ngrok URL you should be forwarded to the `/login` page:
+
 ![image](https://user-images.githubusercontent.com/23581140/206202277-80ea9af6-c2de-456a-abed-febc622be291.png)
 
-Now you can sign-up / login and if authenticated you will be forwarded to the homepage:
+You can login with one of the existing accounts or sign-up yourself.
+
+| Name | Email | Password |
+| --- | --- | --- |
+| demo_user | demo_user@company.com | demo12 |
+| max | max@company.com | maxPW |
+| john | john@company.com | 123456 |
+
+When authenticated you will be forwarded to the homepage:
+
 ![image](https://user-images.githubusercontent.com/23581140/206202557-87be3808-9e76-444d-a9ff-229e19bdd61e.png)
