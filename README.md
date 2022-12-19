@@ -31,7 +31,7 @@ Use the values you obtained in step 2.1. to configure the following variables in
 1. **CNAME**: The individually generated CNAME.
 2. **PROJECT_ID**: The project ID.
 3. **API_SECRET**: The API secret.
-4. **NGROK_URL** Your individual ngrok URL (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io`)
+4. **NGROK_URL** Your individual ngrok URL (e.g. `https://eb70-212-204-96-162.eu.ngrok.io`)
 
 ### 2.3. Start docker containers
 
@@ -43,7 +43,7 @@ docker compose up
 ```
 **Note:** Please wait until all systems are ready. This can take some time if you have an older system.
 
-To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
+To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://eb70-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
 
 ### 3. Usage
 
