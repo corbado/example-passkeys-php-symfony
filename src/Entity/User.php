@@ -23,11 +23,15 @@ class User
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $password = null;
 
-    public function __construct($name, $email, $password)
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?bool $blocked = null;
+
+    public function __construct($name, $email, $password = null, $blocked = false)
     {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->blocked = $blocked;
     }
 
     public function getId(): ?int
@@ -67,6 +71,17 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+    public function isBlocked(): ?bool
+    {
+        return $this->blocked;
+    }
+
+    public function setBlocked(bool $blocked): self
+    {
+        $this->blocked = $blocked;
 
         return $this;
     }

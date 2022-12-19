@@ -1,7 +1,10 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Corbado\Client;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,34 +13,39 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BackendController extends AbstractController
 {
+
+    public function __construct(private ManagerRegistry $doctrine)
+    {
+    }
+
     /**
      * @Route("/api/loginInfo", name="loginInfo", methods="GET")
      */
-    public function loginInfo(Request $request): Response
+    public function loginInfo(UserRepository $userRepo, Request $request): Response
     {
         if (!$this->checkBasicAuth($request)) {
             return new Response("Unauthorized", 500);
         }
 
+        $username = $request->query->get('username');
+        $user = $userRepo->findOneBy(['email' => $username]);
+
         //Look up in database if $username exists and if $username is blocked/not permitted to login
-        $userExists = false;
-        $userBlocked = false;
 
-        //Send response
-
-        if (!$userExists) {
+        if ($user == null) {
             return new Response(status: 404);
         }
-        if ($userBlocked) {
+        if ($user->isBlocked()) {
             return new Response(status: 403);
         }
+
         return new Response(status: 200);
     }
 
     /**
      * @Route("/api/sessionToken", name="sessionToken", methods="GET")
      */
-    public function sessionToken(Request $request, SessionInterface $session): Response
+    public function sessionToken(UserRepository $userRepo, Request $request, SessionInterface $session): Response
     {
         $token = $request->query->get('sessionToken');
         $useragent = $request->headers->get('User-Agent');
@@ -52,6 +60,14 @@ class BackendController extends AbstractController
         $username = $userData['username'];
         $userFullName = $userData['userFullName'];
 
+        //Create user if not exists
+        $user = $userRepo->findOneBy(['email' => $username]);
+        if ($user == null) {
+            $em = $this->doctrine->getManager();
+            $em->persist(new User($userFullName, $username));
+            $em->flush();
+        }
+
         //Create session for $username
         // Set session value
         $value = "$username:$userFullName";
@@ -65,7 +81,7 @@ class BackendController extends AbstractController
     /**
      * @Route("/api/passwordVerify", name="passwordVerify", methods="POST")
      */
-    public function passwordVerify(Request $request): Response
+    public function passwordVerify(UserRepository $userRepo, Request $request): Response
     {
         if (!$this->checkBasicAuth($request)) {
             return new Response("Unauthorized", 500);
@@ -75,8 +91,13 @@ class BackendController extends AbstractController
         $username = $parameters['username'];
         $password = $parameters['password'];
 
-        //Check in database if $username and $password match
-        $matches = $password == "1234";
+        $user = $userRepo->findOneBy(['email' => $username]);
+
+        if ($user == null) {
+            return new Response(status: 404);
+        }
+
+        $matches = $password == $user->getPassword();
 
         if ($matches) {
             return new Response(status: 200);
