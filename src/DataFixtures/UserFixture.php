@@ -4,20 +4,19 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Doctrine\Tests\Common\DataFixtures\TestEntity\User;
-use Faker\Factory;
+use App\Entity\User;
 
 class UserFixture extends Fixture
 {
 
-    private $faker;
-
-    private $users;
-
     public function __construct()
     {
-        $this->faker = Factory::create();
-        $this->users = [
+    }
+
+    public function load(ObjectManager $manager)
+    {
+
+        $users = [
             new User(
                 "demo_user",
                 "demo_user@company.com",
@@ -34,21 +33,10 @@ class UserFixture extends Fixture
                 "123456"
             )
         ];
-    }
 
-    public function load(ObjectManager $manager)
-    {
-        foreach ($this->$users as $item) {
+        foreach ($users as $item) {
             $manager->persist($item);
         }
         $manager->flush();
     }
-
-/*    public function load(ObjectManager $manager): void
-{
-// $product = new Product();
-// $manager->persist($product);
-$manager->flush();
-}
-*/
 }

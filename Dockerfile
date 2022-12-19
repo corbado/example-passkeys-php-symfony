@@ -25,6 +25,7 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 ADD docker/default.conf /etc/apache2/sites-available/000-default.conf
 
-# COPY . /app
 COPY . /var/www/html
 RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
+
+ENTRYPOINT [ "var/www/html/docker/startup.sh" ]
