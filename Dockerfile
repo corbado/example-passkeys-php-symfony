@@ -13,15 +13,13 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y git default-mysql-client mariadb-client
+    apt-get install -y git
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
-
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
 
 ADD docker/default.conf /etc/apache2/sites-available/000-default.conf
 
