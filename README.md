@@ -20,33 +20,20 @@ This is a sample implementation of frontend and backend where the Corbado web co
     └── ...
 
 ## 2. Setup
->**Warning**
->This sample code corresponds to our [web component integration tutorial](TODO: Link einfügen wenn online), please read it first in order to understand the flows and business logic!
 
 ### 2.1. Prerequisites
 
-Please create a free account as well as a project inside our [developer panel](https//app.corbado.com) according to our [docs](TODO:Link). You will need the project's ID, API secret and individually generated CNAME in the next steps.
+Please follow the steps in our [setup guide](TODO:Link) to create and configure a project in our [developer panel](https://app.corabdo.com).
 
-### 2.2. Setup ngrok
+### 2.2. Configure environment variables
 
-Please use our [guide](Link to docs) to configure the reverse proxy service ngrok.
+Use the values you obtained in step 2.1. to configure the following variables inside /docker/.env:
+1. **CNAME**: The individually generated CNAME.
+2. **PROJECT_ID**: The project ID.
+3. **API_SECRET**: The API secret.
+4. **NGROK_URL** Your individual ngrok URL (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io`)
 
-### 2.3. Configure Corbado project
-Please navigate to our configure your Corbado project as shown [here](https://app.corbado.com).
-
-### 2.4. Start local server
-
-#### 2.4.1. Configure environment variables
-
-Inside /docker/.env you have to configure the following variables:
-1. **CNAME**: The individually generated CNAME of step 2.1.
-2. **PROJECT_ID**: The project ID of step 2.1.
-3. **API_SECRET**: The API secret of step 2.1.
-4. **NGROK_URL** Your ngrok URL which you received in step 2.2. (in our case `https://eb70-212-204-96-162.eu.ngrok.io`)
-5. (Optional) **HTTP_BASIC_AUTH_USERNAME**: If you change the username here, you also have to enter the new value into the developer panel, as seen in 2.4.4.
-5. (Optional) **HTTP_BASIC_AUTH_PASSWORD**: If you change the password here, you also have to enter the new value into the developer panel, as seen in 2.4.4.
-
-#### 2.4.2. Start docker containers
+### 2.3. Start docker containers
 
 **Note:** Before continuing, please ensure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and accessible from your shell.
 
@@ -55,13 +42,13 @@ Use the following command to start the system:
 docker compose up -d
 ```
 
-To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://eb70-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
+To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok url with `/ping` as path (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well.
 
 ### 3. Usage
 
-After step 2.4.2. your local server should be fully funcional.
+After step 2.3. your local server should be fully funcional.
 
-If you now go to your ngrok URL you should be forwarded to the `/login` page:
+If you now visit your ngrok URL you should be forwarded to the `/login` page:
 
 ![image](https://user-images.githubusercontent.com/23581140/206202277-80ea9af6-c2de-456a-abed-febc622be291.png)
 
