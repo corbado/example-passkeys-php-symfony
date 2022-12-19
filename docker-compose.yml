@@ -9,6 +9,10 @@ services:
       MYSQL_DATABASE: app_db
       MYSQL_USER: db_user
       MYSQL_PASSWORD: db_user_pass
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 5s
+      retries: 10
     ports:
       - "6033:3306"
     volumes:
@@ -40,7 +44,8 @@ services:
     ports:
       - 8000:80
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: always
     ###> doctrine/doctrine-bundle ###
     #  database:
