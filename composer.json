@@ -8,14 +8,21 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "corbado/client-php": "dev-main",
+        "doctrine/doctrine-bundle": "^2.7",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
+        "doctrine/orm": "^2.13",
         "guzzlehttp/guzzle": "^7.5",
         "symfony/console": "6.1.*",
         "symfony/dotenv": "6.1.*",
         "symfony/flex": "^2",
         "symfony/framework-bundle": "6.1.*",
+        "symfony/maker-bundle": "^1.48",
         "symfony/runtime": "6.1.*",
         "symfony/twig-bundle": "6.1.*",
-        "symfony/yaml": "6.1.*"
+        "symfony/yaml": "6.1.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "config": {
         "allow-plugins": {
