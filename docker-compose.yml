@@ -35,7 +35,7 @@ services:
     build:
       context: ./symfony
       dockerfile: Dockerfile
-    working_dir: /symfony
+    working_dir: /
     container_name: symfony
     env_file:
       - ./.env
@@ -61,7 +61,7 @@ services:
       - DOMAIN=symfony
       - PORT=80
       - REGION=eu
-      - AUTH_TOKEN=2IE5CoyN8b8f9KuppFNkwUnLnby_6SSscyCX8nL3w5Lxqjstt
+      - AUTH_TOKEN=${NGROK_AUTH_TOKEN}
 
   project-configurator:
     build:
