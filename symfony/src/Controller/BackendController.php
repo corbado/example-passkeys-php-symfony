@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Corbado\Client;
+use Doctrine\DBAL\Types\VarDateTimeImmutableType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,17 @@ class BackendController extends AbstractController
 
     public function __construct(private ManagerRegistry $doctrine)
     {
+    }
+
+    /**
+     * @Route("/api/ngrokUrl", name="ngrokUrl", methods="GET")
+     */
+    public function ngrokUrl(UserRepository $userRepo, Request $request): Response
+    {
+        $url = $request->query->get('url');
+        file_put_contents($_ENV["NGROK_FILE"], $url);
+
+        return new Response(status: 200);
     }
 
     /**
@@ -74,8 +86,12 @@ class BackendController extends AbstractController
         $request->getSession()->migrate();
         $request->getSession()->set("user", $value);
 
+        $url = "";
+        if (file_exists($_ENV['NGROK_FILE'])) {
+            $url = file_get_contents($_ENV['NGROK_FILE']);
+        }
         //Forward the user to frontend page
-        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", $_ENV['NGROK_URL']));
+        return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/' />", $url));
     }
 
     /**

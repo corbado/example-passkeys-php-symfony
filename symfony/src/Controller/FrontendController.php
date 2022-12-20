@@ -30,8 +30,13 @@ class FrontendController extends AbstractController
         $user = $request->getSession()->get('user');
         if (empty($user)) {
 
+            $url = "";
+            if (file_exists($_ENV['NGROK_FILE'])) {
+                $url = file_get_contents($_ENV['NGROK_FILE']);
+            }
+
             //Redirect user to login page
-            return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/login' />", $_ENV['NGROK_URL']));
+            return new Response(sprintf("<meta http-equiv='refresh' content='0; url=%s/login' />", $url));
         }
 
         $split = explode(":", $user);

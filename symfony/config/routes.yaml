@@ -18,6 +18,10 @@ pong:
 
 # -------- Backend --------
  
+ngrokUrl:
+    path: /api/ngrokUrl
+    controller: App\Controller\BackendController::ngrokUrl
+
 loginInfo:
     path: /api/loginInfo
     controller: App\Controller\BackendController::loginInfo

@@ -4,19 +4,27 @@ import os
 
 if __name__ == "__main__":
 
+    # Get ngrok url
     response = requests.get("http://ngrok:4551/api/tunnels")
     tunnels = response.json()['tunnels']
     ngrokUrl:str = tunnels[0]['public_url']
 
-    if ngrokUrl.startswith("http"):
-        ngrokUrl = ngrokUrl.replace("http", "https", 1)
+    if ngrokUrl.startswith("http:"):
+        ngrokUrl = ngrokUrl.replace("http:", "https:", 1)
 
-    print("ngrokUrl: ", ngrokUrl)
-    print("Configuring project...")
+    print("Detected ngrokUrl: ", ngrokUrl)
 
     session = requests.Session()
     session.auth = (os.environ['PROJECT_ID'], os.environ['API_SECRET'])
 
+    os.environ['NGROK_URL']=ngrokUrl
+
+    # Notify Symfony
+    print("Notifying symfony...")
+    resp = session.get("http://symfony:80/api/ngrokUrl?url=" + ngrokUrl)
+
+    # Configure project
+    print("Configuring project...")
     projectConfigBody = {
     "externalName": "Local Test",
     "emailFrom": "localtest@corbado.com",
@@ -31,7 +39,7 @@ if __name__ == "__main__":
     resp = session.post("https://api.corbado.com/v1/projectConfig", json=projectConfigBody)
     print(resp.json())
 
-
+    # Authorize origin localhost
     print("Authorizing localhost...")
     localhostOriginBody = {
         "name": "Localhost",
@@ -40,10 +48,10 @@ if __name__ == "__main__":
     resp = session.post("https://api.corbado.com/v1/webauthn/settings", json=localhostOriginBody)
     print(resp.json())
 
-
+    # Authorize origin ngrok
     print("Authorizing ngrok...")
     ngrokOriginBody = {
-        "name": "Ngrok",
+        "name": ngrokUrl,
         "origin": ngrokUrl,
     }
     resp = session.post("https://api.corbado.com/v1/webauthn/settings", json=ngrokOriginBody)
@@ -51,4 +59,6 @@ if __name__ == "__main__":
 
 
     print("Done!")
-    print("YOUR NGROK URL: ", ngrokUrl)
+    print("############################################################")
+    print("# YOUR NGROK URL: ", ngrokUrl + " #")
+    print("############################################################")

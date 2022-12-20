@@ -12,7 +12,7 @@ services:
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       timeout: 5s
-      retries: 20
+      retries: 100
     ports:
       - "6033:3306"
     volumes:
