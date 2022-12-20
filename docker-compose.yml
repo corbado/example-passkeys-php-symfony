@@ -73,7 +73,6 @@ services:
       - ./.env
     volumes:
       - .:/usr/src/app
-    restart: always
 
 volumes:
   dbdata:
