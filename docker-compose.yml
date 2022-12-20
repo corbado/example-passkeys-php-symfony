@@ -17,6 +17,7 @@ services:
       - "6033:3306"
     volumes:
       - dbdata:/var/lib/mysql
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -29,6 +30,7 @@ services:
     restart: always
     ports:
       - 8081:80
+
   symfony:
     build:
       context: ./symfony
@@ -36,7 +38,7 @@ services:
     working_dir: /symfony
     container_name: symfony
     env_file:
-      - ./docker/.env
+      - ./.env
     links:
       - db
     volumes:
@@ -47,8 +49,10 @@ services:
       db:
         condition: service_healthy
     restart: always
+
   ngrok:
     image: shkoliar/ngrok:latest
+    container_name: ngrok
     ports:
       - 4551:4551
     links:
@@ -58,6 +62,18 @@ services:
       - PORT=80
       - REGION=eu
       - AUTH_TOKEN=2IE5CoyN8b8f9KuppFNkwUnLnby_6SSscyCX8nL3w5Lxqjstt
+
+  project-configurator:
+    build:
+      context: ./projectconfigurator
+      dockerfile: Dockerfile
+    working_dir: /projectconfigurator
+    container_name: projectconfigurator
+    env_file:
+      - ./.env
+    volumes:
+      - .:/usr/src/app
+    restart: always
 
 volumes:
   dbdata:
