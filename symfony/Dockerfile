@@ -26,4 +26,4 @@ ADD docker/default.conf /etc/apache2/sites-available/000-default.conf
 COPY . /var/www/html
 RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
 
-ENTRYPOINT [ "var/www/html/docker/startup.sh" ]
+ENTRYPOINT [ "/var/www/html/docker/startup.sh" ]
