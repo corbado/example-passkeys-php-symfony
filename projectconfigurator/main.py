@@ -29,6 +29,7 @@ if __name__ == "__main__":
     "externalName": "Local Test",
     "emailFrom": "localtest@corbado.com",
     "smsFrom": "Corbado Localtest",
+    "externalApplicationProtocolVersion": "v2",
     "webhookUsername": os.environ['WEBHOOK_USERNAME'],
     "webhookPassword": os.environ['WEBHOOK_PASSWORD'],
     "webhookURL": ngrokUrl + "/api/corbado",
