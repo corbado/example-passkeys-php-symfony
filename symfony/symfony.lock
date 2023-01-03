@@ -1,7 +1,4 @@
 {
-    "corbado/client-php": {
-        "version": "dev-main"
-    },
     "doctrine/annotations": {
         "version": "1.14",
         "recipe": {
