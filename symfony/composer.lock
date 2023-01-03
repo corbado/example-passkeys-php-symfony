@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44a8df3a392569b2272aa4e7d41b0d2a",
+    "content-hash": "abac5350cf0da85ebccb142fb9ba4dfc",
     "packages": [
         {
             "name": "corbado/webhook-php",
