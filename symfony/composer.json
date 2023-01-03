@@ -7,7 +7,7 @@
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "corbado/client-php": "dev-main",
+        "corbado/webhook-php": "dev-main",
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
@@ -79,7 +79,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:corbado/client-php"
+            "url": "git@github.com:corbado/webhook-php"
         }
     ]
 }

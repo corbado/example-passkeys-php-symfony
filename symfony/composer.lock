@@ -4,24 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1d33d59ffff141e6c791d08c8cad50eb",
+    "content-hash": "1506a56a83c9b36964f494e7e79dd192",
     "packages": [
         {
-            "name": "corbado/client-php",
+            "name": "corbado/webhook-php",
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/corbado/client-php.git",
-                "reference": "10086b8a91cd6512100d4736f0a47d4483496996"
+                "url": "https://github.com/corbado/webhook-php.git",
+                "reference": "19a078e115448c192b54c91c97ad5d9a9ad6115f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/corbado/client-php/zipball/10086b8a91cd6512100d4736f0a47d4483496996",
-                "reference": "10086b8a91cd6512100d4736f0a47d4483496996",
+                "url": "https://api.github.com/repos/corbado/webhook-php/zipball/19a078e115448c192b54c91c97ad5d9a9ad6115f",
+                "reference": "19a078e115448c192b54c91c97ad5d9a9ad6115f",
                 "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^7.4"
             },
             "default-branch": true,
             "type": "library",
@@ -31,10 +28,10 @@
                 }
             },
             "support": {
-                "source": "https://github.com/corbado/client-php/tree/main",
-                "issues": "https://github.com/corbado/client-php/issues"
+                "source": "https://github.com/corbado/webhook-php/tree/main",
+                "issues": "https://github.com/corbado/webhook-php/issues"
             },
-            "time": "2022-12-23T09:52:59+00:00"
+            "time": "2022-12-30T08:14:50+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -5400,7 +5397,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "corbado/client-php": 20
+        "corbado/webhook-php": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -5410,5 +5407,5 @@
         "ext-iconv": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
