@@ -17,7 +17,11 @@ pong:
     controller: App\Controller\FrontendController::pong
 
 # -------- Backend --------
- 
+
+corbado:
+    path: /api/corbado
+    controller: App\Controller\BackendController::corbado
+
 ngrokUrl:
     path: /api/ngrokUrl
     controller: App\Controller\BackendController::ngrokUrl

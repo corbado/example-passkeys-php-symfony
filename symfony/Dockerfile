@@ -1,7 +1,7 @@
 FROM php:8-apache
 
-ENV HTTP_BASIC_AUTH_USERNAME=\
-    HTTP_BASIC_AUTH_PASSWORD=\
+ENV WEBHOOK_USERNAME=\
+    WEBHOOK_PASSWORD=\
     CNAME=\
     PROJECT_ID=\
     API_SECRET=\
@@ -21,9 +21,16 @@ RUN curl -sS https://get.symfony.com/cli/installer | bash && mv /root/.symfony5/
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
+#RUN symfony server:ca:install
+#RUN a2enmod ssl
+
 ADD docker/default.conf /etc/apache2/sites-available/000-default.conf
 
 COPY . /var/www/html
+#COPY docker/ssl.crt /etc/apache2/ssl/ssl.crt
+#COPY docker/ssl.key /etc/apache2/ssl/ssl.key
+RUN mkdir -p /var/run/apache2/
+
 RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
 
 ENTRYPOINT [ "/var/www/html/symfony/docker/startup.sh" ]

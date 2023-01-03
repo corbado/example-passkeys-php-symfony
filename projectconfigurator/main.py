@@ -29,10 +29,9 @@ if __name__ == "__main__":
     "externalName": "Local Test",
     "emailFrom": "localtest@corbado.com",
     "smsFrom": "Corbado Localtest",
-    "externalApplicationUsername": os.environ['HTTP_BASIC_AUTH_USERNAME'],
-    "externalApplicationPassword": os.environ['HTTP_BASIC_AUTH_PASSWORD'],
-    "legacyAuthMethodsUrl": ngrokUrl + "/api/loginInfo",
-    "passwordVerifyUrl": ngrokUrl + "/api/passwordVerify",
+    "webhookUsername": os.environ['WEBHOOK_USERNAME'],
+    "webhookPassword": os.environ['WEBHOOK_PASSWORD'],
+    "webhookURL": ngrokUrl + "/api/corbado",
     "authSuccessRedirectUrl": ngrokUrl + "/api/sessionToken",
     "allowUserRegistration": True
     }

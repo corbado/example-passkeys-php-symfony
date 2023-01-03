@@ -59,9 +59,11 @@ services:
       - symfony
     environment:
       - DOMAIN=symfony
+      - PROTOCOL=http
       - PORT=80
       - REGION=eu
       - AUTH_TOKEN=${NGROK_AUTH_TOKEN}
+      - BIND_TLS=true
 
   project-configurator:
     build:
