@@ -4,8 +4,38 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "abac5350cf0da85ebccb142fb9ba4dfc",
+    "content-hash": "5dcd4f699502dbb55dfab67eca7512aa",
     "packages": [
+        {
+            "name": "corbado/client-php",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/corbado/client-php.git",
+                "reference": "10086b8a91cd6512100d4736f0a47d4483496996"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/corbado/client-php/zipball/10086b8a91cd6512100d4736f0a47d4483496996",
+                "reference": "10086b8a91cd6512100d4736f0a47d4483496996",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.4"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Corbado\\": "src/"
+                }
+            },
+            "support": {
+                "source": "https://github.com/corbado/client-php/tree/main",
+                "issues": "https://github.com/corbado/client-php/issues"
+            },
+            "time": "2022-12-23T09:52:59+00:00"
+        },
         {
             "name": "corbado/webhook-php",
             "version": "dev-main",
@@ -5331,6 +5361,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "corbado/client-php": 20,
         "corbado/webhook-php": 20
     },
     "prefer-stable": true,
