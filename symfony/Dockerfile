@@ -24,7 +24,9 @@ RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ADD docker/default.conf /etc/apache2/sites-available/000-default.conf
 
 COPY . /var/www/html
+RUN cd /var/www/html
 
-RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
+RUN composer require symfony/runtime
+RUN composer install --no-dev --optimize-autoloader
 
 ENTRYPOINT [ "/var/www/html/symfony/docker/startup.sh" ]
