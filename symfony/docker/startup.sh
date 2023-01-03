@@ -12,4 +12,5 @@ else
     echo "-- Not first container startup --"
 fi
 
+composer install --no-dev --optimize-autoloader
 /usr/sbin/apache2ctl -D FOREGROUND
