@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Corbado\Webhook\Webhook;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -15,9 +16,8 @@ class WebhookController extends AbstractController
     /**
      * @Route("/corbado-webhook", name="corbado")
      */
-    public function corbado_webhook(Request $request): Response
+    public function corbado_webhook(UserRepository $userRepo, Request $request): Response
     {
-        file_put_contents("webhook.log", "corbado() called");
         try {
             // Create new webhook instance with "webhookUsername" and "webhookPassword". Both must be
             // set in the developer panel (https://app.corbado.com) and are used to secure your
@@ -46,7 +46,7 @@ class WebhookController extends AbstractController
                     // Now check if the given user/username exists in your
                     // database and send status. Implement getUserStatus()
                     // function below.
-                    $status = $this->userStatus($request->data->username);
+                    $status = $this->userStatus($userRepo, $request->data->username);
                     $webhook->sendAuthMethodsResponse($status);
 
                     break;
@@ -58,7 +58,7 @@ class WebhookController extends AbstractController
 
                     // Now check if the given username and password is
                     // valid. Implement verifyPassword() function below.
-                    if ($this->verifyPassword($request->data->username, $request->data->password) === true) {
+                    if ($this->verifyPassword($userRepo, $request->data->username, $request->data->password) === true) {
                         $webhook->sendPasswordVerifyResponse(true);
                     } else {
                         $webhook->sendPasswordVerifyResponse(false);
@@ -88,15 +88,11 @@ class WebhookController extends AbstractController
         return new Response(status: 200, content: "OK HABAADA");
     }
 
-    function userStatus(string $username): string
+    function userStatus(UserRepository $userRepo, string $username): string
     {
-        //$user = $userRepo->findOneBy(['email' => $username]);
+        $user = $userRepo->findOneBy(['email' => $username]);
 
         //Look up in database if $username exists and if $username is blocked/not permitted to login
-
-        return AuthMethodsDataResponse::USER_NOT_EXISTS;
-
-
 
         if ($user == null) {
             return AuthMethodsDataResponse::USER_NOT_EXISTS;
@@ -111,17 +107,18 @@ class WebhookController extends AbstractController
     /**
      * Verify given username and password.
      *
-     * !!! MUST BE IMPLEMENTED BY YOU !!!
-     *
      * @param string $username
      * @param string $password
      * @return bool
      */
-    function verifyPassword(string $username, string $password): bool
+    function verifyPassword(UserRepository $userRepo, string $username, string $password): bool
     {
-        // $user = $userRepo->findOneBy(['email' => $username]);
+        $user = $userRepo->findOneBy(['email' => $username]);
+        if ($user == null || $user->getPassword() == null) {
+            return false;
+        }
 
-        return false;
+        return $user->getPassword() == $password;
 
     }
 }
