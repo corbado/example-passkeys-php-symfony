@@ -47,7 +47,7 @@ Use the following command to start the system:
 docker compose up
 ```
 **Note:** Please wait until all containers are ready. This can take some time. 
-Each time the system is started you will receive an individual ngrok URL (only valid until containers are stopped). Open this URL in your browser to test the application:
+Each time the system is started you will receive an individual ngrok URL (only valid until containers are stopped). Open this URL in your browser to use the application:
 
 ![image](https://user-images.githubusercontent.com/23581140/210551918-d6f537ea-0271-4036-b6e8-f521994ff2fa.png)
 
