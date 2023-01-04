@@ -36,7 +36,7 @@ Please follow the steps in our [setup guide](TODO: Link) to create and configure
 Use the values you obtained in step 2.1. to configure the following variables inside `/docker/.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
-3. **NGROK_TOKEN** Your individual ngrok token (create on on [ngrok.com](https://ngrok.com))
+3. **NGROK_TOKEN** Your individual ngrok token. Get yours on [ngrok.com](https://ngrok.com) as shown in our [guide](TODO: Link)
 
 ### 2.3. Start Docker containers
 
