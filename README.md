@@ -25,6 +25,8 @@ This is a sample implementation of frontend and backend where the Corbado web co
     
 ## 2. Setup
 
+> :warning: **If you are using a windows machine**: Make sure to execute `git config --global core.autocrlf false` before cloning this repository to prevent git from changing the line endings of the bash scripts. (Docker will not be able to find the scripts if git does this)
+
 ### 2.1. Prerequisites
 
 Please follow the steps in our [setup guide](TODO: Link) to create and configure a project in our [developer panel](https://app.corabdo.com).
@@ -44,7 +46,12 @@ Use the following command to start the system:
 ```
 docker compose up
 ```
-**Note:** Please wait until all containers are ready. This can take some time.
+**Note:** Please wait until all containers are ready. This can take some time. 
+Each time the system is started you will receive an individual ngrok URL (only valid until containers are stopped). Open this URL in your browser to test the application:
+
+![image](https://user-images.githubusercontent.com/23581140/210548434-60b04e42-18d6-4b3a-aeb4-8f5883bdb628.png)
+
+### 2.4. Error check (optional)
 
 To verify that your instance is running without errors enter `http://localhost:8000/ping` into your browser. If "pong" is displayed, everything worked. Entering your ngrok URL with `/ping` as path (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well:
 
