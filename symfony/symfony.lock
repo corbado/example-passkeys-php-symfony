@@ -1,4 +1,10 @@
 {
+    "corbado/client-php": {
+        "version": "dev-main"
+    },
+    "corbado/webhook-php": {
+        "version": "dev-main"
+    },
     "doctrine/annotations": {
         "version": "1.14",
         "recipe": {

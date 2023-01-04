@@ -28,10 +28,9 @@ Please follow the steps in our [setup guide](TODO: Link) to create and configure
 ### 2.2. Configure environment variables
 
 Use the values you obtained in step 2.1. to configure the following variables inside `/docker/.env`:
-1. **CNAME**: The individually generated CNAME.
 2. **PROJECT_ID**: The project ID.
 3. **API_SECRET**: The API secret.
-4. **NGROK_URL** Your individual ngrok URL (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io`)
+4. **NGROK_TOKEN** Your individual ngrok token (create on on [ngrok.com](https://ngrok.com))
 
 ### 2.3. Start Docker containers
 

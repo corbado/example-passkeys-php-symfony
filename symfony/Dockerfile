@@ -26,6 +26,4 @@ ADD docker/default.conf /etc/apache2/sites-available/000-default.conf
 COPY . /var/www/html
 RUN cd /var/www/html
 
-RUN cd /var/www/html
-
 ENTRYPOINT [ "/var/www/html/symfony/docker/startup.sh" ]

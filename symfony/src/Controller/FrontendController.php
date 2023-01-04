@@ -17,7 +17,7 @@ class FrontendController extends AbstractController
         return $this->render(
             'login.html.twig',
             array(
-                'cname' => $_ENV['CNAME'],
+                'cname' => $_ENV['PROJECT_ID'] . ".auth.corbado.com",
             )
         );
     }

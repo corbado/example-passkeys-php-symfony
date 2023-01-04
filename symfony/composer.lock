@@ -42,26 +42,26 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/corbado/webhook-php.git",
-                "reference": "19a078e115448c192b54c91c97ad5d9a9ad6115f"
+                "reference": "aed9ac98021ca3f069c66bd09f1bd366cc1664da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/corbado/webhook-php/zipball/19a078e115448c192b54c91c97ad5d9a9ad6115f",
-                "reference": "19a078e115448c192b54c91c97ad5d9a9ad6115f",
+                "url": "https://api.github.com/repos/corbado/webhook-php/zipball/aed9ac98021ca3f069c66bd09f1bd366cc1664da",
+                "reference": "aed9ac98021ca3f069c66bd09f1bd366cc1664da",
                 "shasum": ""
             },
             "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Corbado\\": "src/"
+                    "Corbado\\Webhook\\": "src/"
                 }
             },
             "support": {
                 "source": "https://github.com/corbado/webhook-php/tree/main",
                 "issues": "https://github.com/corbado/webhook-php/issues"
             },
-            "time": "2022-12-30T08:14:50+00:00"
+            "time": "2023-01-04T10:21:23+00:00"
         },
         {
             "name": "doctrine/cache",

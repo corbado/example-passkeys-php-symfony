@@ -32,7 +32,7 @@ if __name__ == "__main__":
     "externalApplicationProtocolVersion": "v2",
     "webhookUsername": os.environ['WEBHOOK_USERNAME'],
     "webhookPassword": os.environ['WEBHOOK_PASSWORD'],
-    "webhookURL": ngrokUrl + "/api/corbado",
+    "webhookURL": ngrokUrl + "/corbado-webhook",
     "authSuccessRedirectUrl": ngrokUrl + "/api/sessionToken",
     "allowUserRegistration": True
     }
