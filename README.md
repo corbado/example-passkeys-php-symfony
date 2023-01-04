@@ -49,7 +49,7 @@ docker compose up
 **Note:** Please wait until all containers are ready. This can take some time. 
 Each time the system is started you will receive an individual ngrok URL (only valid until containers are stopped). Open this URL in your browser to test the application:
 
-![image](https://user-images.githubusercontent.com/23581140/210551443-bc779ec0-4e07-43f7-bdd9-4e128b4d3788.png)
+![image](https://user-images.githubusercontent.com/23581140/210551918-d6f537ea-0271-4036-b6e8-f521994ff2fa.png)
 
 ### 2.4. Error check (optional)
 
