@@ -36,7 +36,7 @@ Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overvi
 Use the values you obtained in step 2.1. to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
-3. **NGROK_TOKEN** Your individual ngrok token. (Have a look at our quickstart FAQ (Link) for info on how to get yours)
+3. **NGROK_TOKEN** Your individual ngrok token. [What is an ngrok token and how can I get one?](https://docs.corbado.com)
 
 ### 2.3. Start Docker containers
 
@@ -46,8 +46,9 @@ Use the following command to start the system:
 ```
 docker compose up
 ```
-**Note:** Please wait until all containers are ready. This can take some time. 
-Each time the system is started, you will receive an individual ngrok URL (only valid until containers are stopped). Open this URL in your browser to use the application:
+**Note:** Please wait until all containers are ready. This can take some time. Once the system is ready, a custom ngrok url will be opened in your default browser. (This url is only valid until the containers are stopped).
+
+If your browser does not open by itself, you can find the ngrok url inside the 'projectconfigurator' container's logs:
 
 ![image](https://user-images.githubusercontent.com/23581140/210551918-d6f537ea-0271-4036-b6e8-f521994ff2fa.png)
 
