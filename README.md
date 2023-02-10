@@ -29,7 +29,7 @@ This is a sample implementation of frontend and backend where the Corbado web co
 
 ### 2.1. Prerequisites
 
-Please follow the steps in [Getting started](https://docs.corbado.com/overview/getting-started) to create and configure a project in the [developer panel](https://app.corabdo.com).
+Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overview/getting-started) page to create and configure a project in the [developer panel](https://app.corbado.com).
 
 ### 2.2. Configure environment variables
 
