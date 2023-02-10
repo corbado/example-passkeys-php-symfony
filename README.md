@@ -36,7 +36,7 @@ Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overvi
 Use the values you obtained in step 2.1. to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
-3. **NGROK_TOKEN** Your individual ngrok token. (Register at [ngrok](https://dashboard.ngrok.com/signup) to get yours for free)
+3. **NGROK_TOKEN** Your individual ngrok token. (Have a look at our quickstart FAQ (Link) for info on how to get yours)
 
 ### 2.3. Start Docker containers
 
