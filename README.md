@@ -46,7 +46,7 @@ docker compose up
 
 To verify that your instance is running without errors enter `http://localhost:8000/ping` in your browser. If "pong" is displayed, everything worked.
 
-![image](https://user-images.githubusercontent.com/23581140/208480558-c1bcde88-164e-4a22-97de-240fd93af4c1.png)
+<img width="1115" alt="image" src="https://user-images.githubusercontent.com/18458907/219000434-058d2a75-9480-43e9-b6f9-a09be769cfb8.png">
 
 ## 3. Usage
 
@@ -56,7 +56,7 @@ After step 2.3. your local server should be fully working.
 
 If you now visit `http://localhost:8000`, you should be forwarded to the `/login` page:
 
-![image](https://user-images.githubusercontent.com/23581140/208479745-4dc9acaa-cc43-4324-bfd4-ad2ecf0f7901.png)
+<img width="1111" alt="image" src="https://user-images.githubusercontent.com/18458907/219000019-dd6ab040-f61d-4bd4-8752-221c77ca3301.png">
 
 You can login with one of the existing accounts or sign-up yourself.
 
@@ -68,11 +68,10 @@ You can login with one of the existing accounts or sign-up yourself.
 
 When authenticated you will be forwarded to the home page:
 
-![image](https://user-images.githubusercontent.com/23581140/208479917-e82f06a9-98d1-406d-89d5-aaceb6bdbb2b.png)
+<img width="1114" alt="image" src="https://user-images.githubusercontent.com/18458907/219000168-d500bbfc-0fd9-41ea-a553-590c28105c57.png">
 
 ### 3.2. View all users
 
 On [localhost:8081](http://localhost:8081) a PHPMyAdmin instance is running where you can view all registered users:
 
-![image](https://user-images.githubusercontent.com/23581140/208480126-65f84460-8914-40e8-a964-ac48bfdeec2f.png)
-
+<img width="1114" alt="image" src="https://user-images.githubusercontent.com/18458907/219000289-24cb9225-f226-43ef-85d9-6356b1f419a2.png">
