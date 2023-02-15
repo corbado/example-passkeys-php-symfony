@@ -82,4 +82,4 @@ node_modules/
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,symfony
 
-my-project/
+.idea/

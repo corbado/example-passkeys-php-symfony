@@ -4,23 +4,17 @@ This is a sample implementation of frontend and backend where the Corbado web co
 **Note:** In this tutorial a customer system was built with some pre-existing password-based users. Have a look at our [docs](https://docs.corbado.com/integrations/web-component/no-existing-user-base) to see the changes you have to make if you don't have any users yet.
 
 ## 1. File structure
-
     ├── ...
-    ├── projectconfigurator                        
-    │   └── main.py                         # A script that configures your project automatically when the containers have started
-    ├── symfony                             # Frontend and backend are located in a single Symfony application inside this folder
-    |   ├── config      
-    │   |   └── routes.yaml                 # Assigns paths to controller methods    
-    |   ├── src                             
-    |   │   ├── Controller                  
-    |   │   │   ├── BackendController.php   # Manages endpoints for backend
-    |   │   │   ├── WebhookController.php   # Manages endpoints for webhook
-    |   │   └── └── FrontendController.php  # Manages endpoints for frontend
-    |   ├── templates                     
-    |   │   ├── home.html.twig              # Home page which you only get to see if you are logged in
-    |   │   ├── login.html.twig             # Login page which contains the Corbado web component; Acts as landing page if you are not logged in
-    |   │   └── .env                        # Contains all Symfony environment variables
-    ├── .env                                # Contains all Docker environment variables
+    ├── config      
+    |   └── routes.yaml                 # Assigns paths to controller methods    
+    ├── src                             
+    │   ├── Controller                  
+    │   │   ├── WebhookController.php   # Manages endpoints for webhook
+    │   └── └── AppController.php       # Manages endpoints for application
+    ├── templates                     
+    │   ├── home.html.twig              # Home page which you only get to see if you are logged in
+    │   ├── login.html.twig             # Login page which contains the Corbado web component; Acts as landing page if you are not logged in
+    ├── .env                            # Contains all Symfony environment variables
     └── ...
     
 ## 2. Setup
@@ -36,7 +30,7 @@ Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overvi
 Use the values you obtained in step 2.1. to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
-3. **NGROK_TOKEN** Your individual ngrok token. [What is an ngrok token and how can I get one?](https://docs.corbado.com)
+3. **CLI_SECRET** Your individual ngrok token. [What is an ngrok token and how can I get one?](https://docs.corbado.com)
 
 ### 2.3. Start Docker containers
 

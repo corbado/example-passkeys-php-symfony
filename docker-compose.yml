@@ -31,12 +31,10 @@ services:
     ports:
       - 8081:80
 
-  symfony:
+  php:
     build:
-      context: ./symfony
+      context: .
       dockerfile: Dockerfile
-    working_dir: /
-    container_name: symfony
     env_file:
       - ./.env
     links:
@@ -44,37 +42,8 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - 8000:80
-    depends_on:
-      db:
-        condition: service_healthy
+      - 8000:8000
     restart: always
-
-  ngrok:
-    image: shkoliar/ngrok:latest
-    container_name: ngrok
-    ports:
-      - 4551:4551
-    links:
-      - symfony
-    environment:
-      - DOMAIN=symfony
-      - PROTOCOL=http
-      - PORT=80
-      - REGION=eu
-      - AUTH_TOKEN=${NGROK_AUTH_TOKEN}
-      - BIND_TLS=true
-
-  project-configurator:
-    build:
-      context: ./projectconfigurator
-      dockerfile: Dockerfile
-    working_dir: /projectconfigurator
-    container_name: projectconfigurator
-    env_file:
-      - ./.env
-    volumes:
-      - .:/usr/src/app
 
 volumes:
   dbdata:

@@ -8,11 +8,6 @@ use App\Entity\User;
 
 class UserFixture extends Fixture
 {
-
-    public function __construct()
-    {
-    }
-
     public function load(ObjectManager $manager)
     {
 
@@ -20,17 +15,17 @@ class UserFixture extends Fixture
             new User(
                 "demo_user",
                 "demo_user@company.com",
-                "demo12"
+                password_hash("demo12", PASSWORD_DEFAULT)
             ),
             new User(
                 "max",
                 "max@company.com",
-                "maxPW"
+                password_hash("maxPW", PASSWORD_DEFAULT)
             ),
             new User(
                 "john",
                 "john@company.com",
-                "123456"
+                password_hash("123456", PASSWORD_DEFAULT)
             )
         ];
 
