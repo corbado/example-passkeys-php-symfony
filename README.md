@@ -1,7 +1,7 @@
 # Complete integration sample for the Corbado web component
 This is a sample implementation of frontend and backend where the Corbado web component is integrated. You can see a live demo: (soon)
 
-**Note:** In this tutorial a customer system was built with some pre-existing password-based users. Have a look at our [docs](https://docs.corbado.com/integrations/web-component/no-existing-user-base) to see the changes you have to make if you don't have any users yet.
+**Note:** In this tutorial a customer system is created with some pre-existing password-based users. Have a look at our [docs](https://docs.corbado.com/integrations/web-component/no-existing-user-base) to see the integration if you don't have any users yet.
 
 ## 1. File structure
     ├── ...
@@ -30,7 +30,7 @@ Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overvi
 Use the values you obtained in step 2.1. to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
-3. **CLI_SECRET** Your individual ngrok token. [What is an ngrok token and how can I get one?](https://docs.corbado.com)
+3. **CLI_SECRET** The CLI secret.
 
 ### 2.3. Start Docker containers
 
@@ -40,15 +40,11 @@ Use the following command to start the system:
 ```
 docker compose up
 ```
-**Note:** Please wait until all containers are ready. This can take some time. Once the system is ready, a custom ngrok url will be opened in your default browser. (This url is only valid until the containers are stopped).
-
-If your browser does not open by itself, you can find the ngrok url inside the 'projectconfigurator' container's logs:
-
-![image](https://user-images.githubusercontent.com/23581140/210551918-d6f537ea-0271-4036-b6e8-f521994ff2fa.png)
+**Note:** Please wait until all containers are ready. This can take some time. 
 
 ### 2.4. Error check (optional)
 
-To verify that your instance is running without errors enter `http://localhost:8000/ping` in your browser. If "pong" is displayed, everything worked. Entering your ngrok URL with `/ping` as path (e.g. `https://a9f7-212-204-96-162.eu.ngrok.io/ping`) should display "pong" as well:
+To verify that your instance is running without errors enter `http://localhost:8000/ping` in your browser. If "pong" is displayed, everything worked.
 
 ![image](https://user-images.githubusercontent.com/23581140/208480558-c1bcde88-164e-4a22-97de-240fd93af4c1.png)
 
@@ -58,7 +54,7 @@ After step 2.3. your local server should be fully working.
 
 ### 3.1. Test authentication
 
-If you now visit your ngrok URL you should be forwarded to the `/login` page:
+If you now visit `http://localhost:8000`, you should be forwarded to the `/login` page:
 
 ![image](https://user-images.githubusercontent.com/23581140/208479745-4dc9acaa-cc43-4324-bfd4-ad2ecf0f7901.png)
 
