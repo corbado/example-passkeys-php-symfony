@@ -19,7 +19,7 @@ This is a sample implementation of frontend and backend where the Corbado web co
     
 ## 2. Setup
 
-> :warning: **If you are using a windows machine**: Make sure to execute `git config --global core.autocrlf false` before cloning this repository to prevent git from changing the line endings of the bash scripts. (Docker will not be able to find the scripts if git does this)
+> :warning: **If you are using a Windows machine**: Make sure to execute `git config --global core.autocrlf false` before cloning this repository to prevent git from changing the line endings of the bash scripts. (Docker will not be able to find the scripts if git does this)
 
 ### 2.1. Prerequisites
 
@@ -27,7 +27,7 @@ Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overvi
 
 ### 2.2. Configure environment variables
 
-Use the values you obtained in step 2.1. to configure the following variables inside `.env`:
+Use the values you obtained in step 2.1 from the [developer panel](https://app.corbado.com/app/settings/credentials). to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
 3. **CLI_SECRET** The CLI secret.
