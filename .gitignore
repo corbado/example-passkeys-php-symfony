@@ -32,6 +32,7 @@
 /var/bootstrap.php.cache
 /bin/*
 !bin/console
+!bin/startup.sh
 !bin/symfony_requirements
 /vendor/
 
