@@ -44,7 +44,7 @@ docker compose up
 
 ### 2.4. Error check (optional)
 
-To verify that your instance is running without errors enter `http://localhost:8000/ping` in your browser. If "pong" is displayed, everything worked.
+To verify that your instance is running without errors enter `http://localhost:19915/ping` in your browser. If "pong" is displayed, everything worked.
 
 <img width="1115" alt="image" src="https://user-images.githubusercontent.com/18458907/219000434-058d2a75-9480-43e9-b6f9-a09be769cfb8.png">
 
@@ -54,7 +54,7 @@ After step 2.3. your local server should be fully working.
 
 ### 3.1. Test authentication
 
-If you now visit `http://localhost:8000`, you should be forwarded to the `/login` page:
+If you now visit `http://localhost:19915`, you should be forwarded to the `/login` page:
 
 <img width="1111" alt="image" src="https://user-images.githubusercontent.com/18458907/219000019-dd6ab040-f61d-4bd4-8752-221c77ca3301.png">
 
