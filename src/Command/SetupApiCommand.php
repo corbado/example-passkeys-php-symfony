@@ -37,9 +37,9 @@ class SetupApiCommand extends Command
             "externalApplicationProtocolVersion" => "v2",
             "webhookUsername" => $this->webhookUsername,
             "webhookPassword" => $this->webhookPassword,
-            "applicationUrl" => "http://localhost:8000/login",
-            "webhookURL" => "http://localhost:8000/corbado-webhook",
-            "authSuccessRedirectUrl" => "http://localhost:8000/api/sessionToken",
+            "applicationUrl" => "http://localhost:19915/login",
+            "webhookURL" => "http://localhost:19915/corbado-webhook",
+            "authSuccessRedirectUrl" => "http://localhost:19915/api/sessionToken",
             "allowUserRegistration" => true,
             "allowIPStickiness" => false,
         ];
@@ -48,7 +48,7 @@ class SetupApiCommand extends Command
 
         $webauthnSettings = [
             "name" => "Localhost",
-            "origin" => "http://localhost:8000",
+            "origin" => "http://localhost:19915",
         ];
 
         try {
