@@ -31,7 +31,7 @@ You can download this repository directly from our [Examples](https://app.corbad
 
 Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overview/getting-started) page to create and configure a project in the [developer panel](https://app.corbado.com).
 
-Use the values you obtained above from the [developer panel](https://app.corbado.com/app/settings/credentials). to configure the following variables inside `.env`:
+Use the values you obtained above to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
 3. **CLI_SECRET** The CLI secret.
