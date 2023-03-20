@@ -25,7 +25,7 @@ This is a sample implementation of frontend and backend where the Corbado web co
 
 #### Automatic Setup
 
-You can download this repository directly from our [Examples](https://docs.corbado.com/overview/examples) page, where all environment variables and other necessary parameters will be configured automatically. In that case, you can skip the following manual setup step, and proceed to step 2.2. 
+You can download this repository directly from our [Examples](https://app.corbado.com/app/getting-started/examples) page, where all environment variables and other necessary parameters will be configured automatically. In that case, you can skip the following manual setup step, and proceed to step 2.2. 
 
 #### Manual Setup
 
