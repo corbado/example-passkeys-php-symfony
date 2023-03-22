@@ -54,10 +54,10 @@ class AppController extends AbstractController
         return new Response("pong");
     }
 
-    #[Route('/api/sessionToken', name: 'sessionToken', methods: 'GET')]
-    public function sessionToken(UserRepository $userRepo, Request $request, SessionInterface $session, Client $apiClient): Response
+    #[Route('/api/redirect', name: 'redirect2', methods: 'GET')]
+    public function redirectEndpoint(UserRepository $userRepo, Request $request, SessionInterface $session, Client $apiClient): Response
     {
-        $token = $request->query->get('sessionToken');
+        $token = $request->query->get('corbadoSessionToken');
         $useragent = $request->headers->get('User-Agent');
         $remoteAddress = $request->server->get('REMOTE_ADDR');
 

@@ -9,8 +9,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(
-    name: 'app:setup-api',
-    description: 'Setup api in order to run this widget',
+name: 'app:setup-api',
+description: 'Setup api in order to run this widget',
 )]
 class SetupApiCommand extends Command
 {
@@ -37,9 +37,12 @@ class SetupApiCommand extends Command
             "externalApplicationProtocolVersion" => "v2",
             "webhookUsername" => $this->webhookUsername,
             "webhookPassword" => $this->webhookPassword,
+            "webhookTestInvalidUsername" => "test@web.de",
+            "webhookTestValidUsername" => "demo_user@company.com",
+            "webhookTestValidPassword" => "demo12",
             "applicationUrl" => "http://localhost:8000/login",
             "webhookURL" => "http://localhost:8000/corbado-webhook",
-            "authSuccessRedirectUrl" => "http://localhost:8000/api/sessionToken",
+            "authSuccessRedirectUrl" => "http://localhost:8000/api/redirect",
             "allowUserRegistration" => true,
             "allowIPStickiness" => false,
         ];
