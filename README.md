@@ -50,7 +50,7 @@ docker compose up
 
 To verify that your instance is running without errors enter `http://localhost:19915/ping` in your browser. If "pong" is displayed, everything worked.
 
-<img width="1115" alt="image" src="https://user-images.githubusercontent.com/18458907/219000434-058d2a75-9480-43e9-b6f9-a09be769cfb8.png">
+<img width="1013" alt="Screenshot 2023-04-28 at 10 47 44 AM" src="https://user-images.githubusercontent.com/50023117/235101153-c99dd1ed-cefc-474f-8997-1fb4774a182e.png">
 
 ## 3. Usage
 
@@ -60,7 +60,7 @@ After step 2.3. your local server should be fully working.
 
 If you now visit `http://localhost:19915`, you should be forwarded to the `/login` page:
 
-<img width="1111" alt="image" src="https://user-images.githubusercontent.com/18458907/219000019-dd6ab040-f61d-4bd4-8752-221c77ca3301.png">
+<img width="834" alt="Screenshot 2023-04-28 at 10 42 10 AM" src="https://user-images.githubusercontent.com/50023117/235100435-9e727b16-8c65-4400-a987-a5a360a8c07c.png">
 
 You can login with one of the existing accounts or sign-up yourself.
 
@@ -72,7 +72,7 @@ You can login with one of the existing accounts or sign-up yourself.
 
 When authenticated you will be forwarded to the home page:
 
-<img width="1114" alt="image" src="https://user-images.githubusercontent.com/18458907/219000168-d500bbfc-0fd9-41ea-a553-590c28105c57.png">
+<img width="833" alt="Screenshot 2023-04-28 at 10 41 40 AM" src="https://user-images.githubusercontent.com/50023117/235100667-dc11d62d-17f8-41e0-be0b-5942ebaa84d0.png">
 
 ### 3.2. View all users
 
