@@ -1,7 +1,4 @@
 {
-    "corbado/client-php": {
-        "version": "dev-main"
-    },
     "corbado/webhook-php": {
         "version": "dev-main"
     },
