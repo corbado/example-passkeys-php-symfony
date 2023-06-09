@@ -34,7 +34,8 @@ Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overvi
 Use the values you obtained above to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
-3. **CLI_SECRET** The CLI secret.
+3. **AUTHENTICATION_URL**: The authentication URL.
+4. **CLI_SECRET** The CLI secret.
 
 ### 2.2. Start Docker containers
 

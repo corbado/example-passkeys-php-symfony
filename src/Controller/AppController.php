@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Corbado\Client;
+use Corbado\SDK;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,33 +55,20 @@ class AppController extends AbstractController
         return new Response("pong");
     }
 
-    #[Route('/api/sessionToken', name: 'sessionToken', methods: 'GET')]
-    public function sessionToken(UserRepository $userRepo, Request $request, SessionInterface $session, Client $apiClient): Response
+    #[Route('/corbadoAuthenticationHandler', name: 'corbadoAuthenticationHandler', methods: 'GET')]
+    public function corbadoAuthenticationHandler(UserRepository $userRepo, Request $request, SessionInterface $session, SDK $corbado): Response
     {
-        $token = $request->query->get('sessionToken');
-        $useragent = $request->headers->get('User-Agent');
-        $remoteAddress = $request->server->get('REMOTE_ADDR');
-
-        try {
-            $result = $apiClient->widget()->sessionVerify($token, $remoteAddress, $useragent);
-        } catch (\Exception $e) {
-            return new Response('Session token expired', 400);
+        $sessionUser = $corbado->session()->getCurrentUser();
+        if (!$sessionUser->isAuthenticated()) {
+            return new Response('User not authenticated', 400);
         }
-        $response = $result->getData()->getUserData();
-
-        // Parse json response from Corbado request
-        $userData = json_decode($response, true);
-        $username = $userData['username'];
-        $userFullName = $userData['userFullName'];
 
         // Create user if not exists
-        $user = $userRepo->findOneBy(['email' => $username]);
+        $user = $userRepo->findOneBy(['email' => $sessionUser->getEmail()]);
         if ($user === null) {
-            $user = new User($userFullName, $username);
+            $user = new User($sessionUser->getName(), $sessionUser->getEmail());
             $userRepo->save($user, true);
         }
-
-        $session->set("userID", $user->getId());
 
         // Forward the user to frontend page
         return $this->redirectToRoute('home');
