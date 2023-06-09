@@ -6,6 +6,8 @@ use App\Repository\UserRepository;
 use Corbado\Client;
 use Corbado\SDK;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -25,27 +27,18 @@ class AppController extends AbstractController
     }
 
     #[Route('/', name: 'home', methods: 'GET')]
-    public function home(UserRepository $userRepo, SDK $corbado): Response
+    public function home(UserRepository $userRepo, Security $security,): Response
     {
-        $sessionUser = $corbado->session()->getCurrentUser();
-        if (!$sessionUser->isAuthenticated()) {
-            return $this->redirectToRoute('login');
-        }
-
-        // @tobias: brauchen wir das unbedingt? ist bisschen doof weil hier session removed wurde
-        // aber das können wir ja jetzt nicht mehr (weil nur im frontend geht). ist im grunde nur für den
-        // case wenn ihc es iwi schaffe mich einzuloggen ohne über /corbadoAuthenticationHandler zu gehen, weil
-        // dann hier der user fehlt?
-        $user = $userRepo->find($sessionUser->getID());
-        if ($user === null) {
+        $sessionUser = $security->getUser();
+        if ($sessionUser === null) {
             return $this->redirectToRoute('login');
         }
 
         return $this->render(
             'home.html.twig',
             array(
-                'username' => $user->getEmail(),
-                'userFullName' => $user->getName(),
+                'username'=> '',
+                'userFullName' => '',
             )
         );
 

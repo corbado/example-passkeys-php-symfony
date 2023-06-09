@@ -8,6 +8,7 @@ parameters:
     app.apiSecret: '%env(resolve:API_SECRET)%'
     app.webhookUsername: '%env(resolve:WEBHOOK_USERNAME)%'
     app.webhookPassword: '%env(resolve:WEBHOOK_PASSWORD)%'
+    app.authenticationURL: '%env(resolve:AUTHENTICATION_URL)%'
 
 services:
     # default configuration for services in *this* file
@@ -31,9 +32,13 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Corbado\Client:
-        autowire: true
-        bind:
-            $baseURI: 'https://api.corbado.com'
-            $username: '%app.projectID%'
-            $password: '%app.apiSecret%'
+    Corbado\Configuration:
+        calls:
+            - setProjectID: [ '%app.projectID%' ]
+            - setApiSecret: [ '%app.apiSecret%' ]
+            - setAuthenticationURL: [ '%app.authenticationURL%' ]
+            - setJwksCachePool: [ '@Symfony\Component\Cache\Adapter\NullAdapter' ]
+
+    Corbado\SDK:
+
+    Symfony\Component\Cache\Adapter\NullAdapter:
