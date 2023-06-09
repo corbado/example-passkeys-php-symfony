@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a02b2cd2cfa71a086ae1f6f9149f875",
+    "content-hash": "13693e0172cc3f343dd3bed9c24559d5",
     "packages": [
         {
             "name": "corbado/client-php",
@@ -53,49 +53,6 @@
                 "source": "https://github.com/corbado/corbado-php/tree/4-implement-new-session-management"
             },
             "time": "2023-06-09T07:21:04+00:00"
-        },
-        {
-            "name": "corbado/webhook-php",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/corbado/corbado-webhook-php.git",
-                "reference": "9d8dbf9ca2e13d41b391b974c9016ca963ea8803"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/corbado/corbado-webhook-php/zipball/9d8dbf9ca2e13d41b391b974c9016ca963ea8803",
-                "reference": "9d8dbf9ca2e13d41b391b974c9016ca963ea8803",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.5"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^1.9",
-                "phpunit/phpunit": "^9.5"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Corbado\\Webhook\\": "src/"
-                }
-            },
-            "scripts": {
-                "analyze": [
-                    "vendor/bin/phpstan --memory-limit=1000000000 --level=8 analyze src examples tests"
-                ],
-                "test": [
-                    "vendor/bin/phpunit --colors=always --bootstrap vendor/autoload.php --verbose tests"
-                ]
-            },
-            "support": {
-                "source": "https://github.com/corbado/corbado-webhook-php/tree/main",
-                "issues": "https://github.com/corbado/corbado-webhook-php/issues"
-            },
-            "time": "2023-04-12T12:56:21+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -5346,8 +5303,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "corbado/client-php": 20,
-        "corbado/webhook-php": 20
+        "corbado/client-php": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

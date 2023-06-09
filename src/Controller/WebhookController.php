@@ -2,20 +2,20 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
-use Corbado\Webhook\Webhook;
+use Corbado\Classes\Webhook;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Corbado\Webhook\Classes\Models\AuthMethodsDataResponse;
+use Corbado\Classes\WebhookModels\AuthMethodsDataResponse;
 use Throwable;
 use Symfony\Component\Routing\Annotation\Route;
 
 class WebhookController extends AbstractController
 {
-    #[Route('/corbado-webhook', name: 'corbado', methods: 'POST')]
-    public function corbadoWebhook(UserRepository $userRepo, Request $request, string $webhookUsername, string $webhookPassword): Response
+    #[Route('/corbadoWebhookHandler', name: 'corbadoWebhookHandler', methods: 'POST')]
+    public function corbadoWebhookHandler(UserRepository $userRepo, string $webhookUsername, string $webhookPassword): Response
     {
         try {
             // Create new webhook instance with "webhookUsername" and "webhookPassword". Both must be

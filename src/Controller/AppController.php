@@ -14,9 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     #[Route('/login', name: 'login', methods: 'GET')]
-    public function login(Request $request, string $projectID): Response
+    public function login(string $projectID): Response
     {
-        $request->getSession()->remove('user');
         return $this->render(
             'login.html.twig',
             array(
@@ -26,16 +25,19 @@ class AppController extends AbstractController
     }
 
     #[Route('/', name: 'home', methods: 'GET')]
-    public function home(Request $request, UserRepository $userRepo): Response
+    public function home(UserRepository $userRepo, SDK $corbado): Response
     {
-        $userID = $request->getSession()->get('userID');
-        if (empty($userID)) {
+        $sessionUser = $corbado->session()->getCurrentUser();
+        if (!$sessionUser->isAuthenticated()) {
             return $this->redirectToRoute('login');
         }
 
-        $user = $userRepo->find($userID);
+        // @tobias: brauchen wir das unbedingt? ist bisschen doof weil hier session removed wurde
+        // aber das können wir ja jetzt nicht mehr (weil nur im frontend geht). ist im grunde nur für den
+        // case wenn ihc es iwi schaffe mich einzuloggen ohne über /corbadoAuthenticationHandler zu gehen, weil
+        // dann hier der user fehlt?
+        $user = $userRepo->find($sessionUser->getID());
         if ($user === null) {
-            $request->getSession()->clear();
             return $this->redirectToRoute('login');
         }
 
@@ -56,7 +58,7 @@ class AppController extends AbstractController
     }
 
     #[Route('/corbadoAuthenticationHandler', name: 'corbadoAuthenticationHandler', methods: 'GET')]
-    public function corbadoAuthenticationHandler(UserRepository $userRepo, Request $request, SessionInterface $session, SDK $corbado): Response
+    public function corbadoAuthenticationHandler(UserRepository $userRepo, SDK $corbado): Response
     {
         $sessionUser = $corbado->session()->getCurrentUser();
         if (!$sessionUser->isAuthenticated()) {
