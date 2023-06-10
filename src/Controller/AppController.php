@@ -3,14 +3,11 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
-use Corbado\Client;
 use Corbado\SDK;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
@@ -59,13 +56,12 @@ class AppController extends AbstractController
         }
 
         // Create user if not exists
-        $user = $userRepo->findOneBy(['email' => $sessionUser->getEmail()]);
-        if ($user === null) {
-            $user = new User($sessionUser->getName(), $sessionUser->getEmail());
-            $userRepo->save($user, true);
+        $dbUser = $userRepo->findOneBy(['email' => $sessionUser->getEmail()]);
+        if ($dbUser === null) {
+            $dbUser = new User($sessionUser->getName(), $sessionUser->getEmail());
+            $userRepo->save($dbUser, true);
         }
 
-        // Forward the user to frontend page
         return $this->redirectToRoute('home');
     }
 }

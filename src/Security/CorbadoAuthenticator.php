@@ -40,7 +40,7 @@ class CorbadoAuthenticator extends AbstractAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $user = $this->corbado->session('v2')->getCurrentUser();
+        $user = $this->corbado->session()->getCurrentUser();
 
         return new Passport(
             new UserBadge('', function() use ($user) {
