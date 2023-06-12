@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/corbado/corbado-php.git",
-                "reference": "08e197c939af89268ea798fe5a71554bf7a39a5a"
+                "reference": "0e61feaf1d17a721bc4417923512c22c3ab27a72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/corbado/corbado-php/zipball/08e197c939af89268ea798fe5a71554bf7a39a5a",
-                "reference": "08e197c939af89268ea798fe5a71554bf7a39a5a",
+                "url": "https://api.github.com/repos/corbado/corbado-php/zipball/0e61feaf1d17a721bc4417923512c22c3ab27a72",
+                "reference": "0e61feaf1d17a721bc4417923512c22c3ab27a72",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 "issues": "https://github.com/corbado/corbado-php/issues",
                 "source": "https://github.com/corbado/corbado-php/tree/4-implement-new-session-management"
             },
-            "time": "2023-06-10T07:05:53+00:00"
+            "time": "2023-06-12T13:43:23+00:00"
         },
         {
             "name": "doctrine/cache",

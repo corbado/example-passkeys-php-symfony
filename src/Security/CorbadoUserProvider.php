@@ -2,7 +2,8 @@
 
 namespace App\Security;
 
-use Corbado\Classes\User;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -10,6 +11,13 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 class CorbadoUserProvider implements UserProviderInterface
 {
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Symfony calls this method if you use features like switch_user
      * or remember_me. If you're not using these features, you do not
@@ -19,11 +27,7 @@ class CorbadoUserProvider implements UserProviderInterface
      */
     public function loadUserByIdentifier(string $identifier): UserInterface
     {
-        die('test');
-        // Load a User object from your data source or throw UserNotFoundException.
-        // The $identifier argument is whatever value is being returned by the
-        // getUserIdentifier() method in your User class.
-        return new User($identifier, $identifier);
+        return $this->userRepository->find($identifier);
     }
 
     /**

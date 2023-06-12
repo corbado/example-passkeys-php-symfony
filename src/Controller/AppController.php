@@ -13,30 +13,36 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     #[Route('/login', name: 'login', methods: 'GET')]
-    public function login(string $projectID): Response
+    public function login(Security $security, string $authenticationUrl): Response
     {
+        $sessionUser = $security->getUser();
+        if ($sessionUser instanceof User) {
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render(
             'login.html.twig',
             array(
-                'projectID' => $projectID,
+                'authenticationUrl' => $authenticationUrl,
             )
         );
     }
 
     #[Route('/', name: 'home', methods: 'GET')]
-    public function home(UserRepository $userRepo, Security $security,): Response
+    public function home(Security $security, string $authenticationUrl): Response
     {
         $sessionUser = $security->getUser();
-        if ($sessionUser === null) {
+        if (!$sessionUser instanceof User) {
             return $this->redirectToRoute('login');
         }
 
         return $this->render(
             'home.html.twig',
-            array(
-                'username'=> '',
-                'userFullName' => '',
-            )
+            [
+                'authenticationUrl'=> $authenticationUrl,
+                'username'=> $sessionUser->getEmail(),
+                'userFullName' => $sessionUser->getName(),
+            ]
         );
 
     }
@@ -45,23 +51,5 @@ class AppController extends AbstractController
     public function pong(Request $request): Response
     {
         return new Response("pong");
-    }
-
-    #[Route('/corbadoAuthenticationHandler', name: 'corbadoAuthenticationHandler', methods: 'GET')]
-    public function corbadoAuthenticationHandler(UserRepository $userRepo, SDK $corbado): Response
-    {
-        $sessionUser = $corbado->session()->getCurrentUser();
-        if (!$sessionUser->isAuthenticated()) {
-            return new Response('User not authenticated', 400);
-        }
-
-        // Create user if not exists
-        $dbUser = $userRepo->findOneBy(['email' => $sessionUser->getEmail()]);
-        if ($dbUser === null) {
-            $dbUser = new User($sessionUser->getName(), $sessionUser->getEmail());
-            $userRepo->save($dbUser, true);
-        }
-
-        return $this->redirectToRoute('home');
     }
 }

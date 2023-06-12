@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html.twig' %}
 
-<head>
-    <script defer src="https://auth.corbado.com/auth.js"></script>
-</head>
-
-<body>
+{% block body %}
 
     <!-- Your website content -->
 
@@ -23,7 +18,8 @@
         }
     </style>
 
-    <corbado-auth project_id="{{projectID}}"></corbado-auth>
+    <corbado-auth
+        endpoint="{{ authenticationUrl }}"
+    ></corbado-auth>
 
-</body>
-</html>
+{% endblock %}
