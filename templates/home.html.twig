@@ -31,11 +31,9 @@
 
             <corbado-logout-handler
                 endpoint="{{ authenticationUrl }}"
+                redirect_url="{{ path('login') }}"
             >
-                <button
-                    type="button"
-                    onclick="window.location = '{{ path('login') }}'"
-                >Logout</button>
+                <button>Logout</button>
             </corbado-logout-handler>
 
         </div>
