@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/corbado/corbado-php.git",
-                "reference": "0e61feaf1d17a721bc4417923512c22c3ab27a72"
+                "reference": "df6207e25ea6d5afde2dc50f5d1e6980136b5077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/corbado/corbado-php/zipball/0e61feaf1d17a721bc4417923512c22c3ab27a72",
-                "reference": "0e61feaf1d17a721bc4417923512c22c3ab27a72",
+                "url": "https://api.github.com/repos/corbado/corbado-php/zipball/df6207e25ea6d5afde2dc50f5d1e6980136b5077",
+                "reference": "df6207e25ea6d5afde2dc50f5d1e6980136b5077",
                 "shasum": ""
             },
             "require": {
@@ -46,13 +46,13 @@
                     "email": "tobias.albrecht@corbado.com"
                 }
             ],
-            "description": "Corbado PHP SDK to access the Corbado platform",
+            "description": "This PHP SDK eases the integration of Corbado's passkey-first authentication solution.",
             "homepage": "https://www.corbado.com",
             "support": {
                 "issues": "https://github.com/corbado/corbado-php/issues",
                 "source": "https://github.com/corbado/corbado-php/tree/4-implement-new-session-management"
             },
-            "time": "2023-06-12T13:43:23+00:00"
+            "time": "2023-06-19T10:53:50+00:00"
         },
         {
             "name": "doctrine/cache",

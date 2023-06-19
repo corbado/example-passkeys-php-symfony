@@ -2,8 +2,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Repository\UserRepository;
-use Corbado\SDK;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     #[Route('/login', name: 'login', methods: 'GET')]
-    public function login(Security $security, string $authenticationUrl): Response
+    public function login(Security $security, string $projectID): Response
     {
         $sessionUser = $security->getUser();
         if ($sessionUser instanceof User) {
@@ -23,13 +21,13 @@ class AppController extends AbstractController
         return $this->render(
             'login.html.twig',
             array(
-                'authenticationUrl' => $authenticationUrl,
+                'projectID' => $projectID,
             )
         );
     }
 
     #[Route('/', name: 'home', methods: 'GET')]
-    public function home(Security $security, string $authenticationUrl): Response
+    public function home(Security $security, string $projectID): Response
     {
         $sessionUser = $security->getUser();
         if (!$sessionUser instanceof User) {
@@ -39,7 +37,7 @@ class AppController extends AbstractController
         return $this->render(
             'home.html.twig',
             [
-                'authenticationUrl'=> $authenticationUrl,
+                'projectID'=> $projectID,
                 'username'=> $sessionUser->getEmail(),
                 'userFullName' => $sessionUser->getName(),
             ]

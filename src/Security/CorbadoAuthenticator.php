@@ -41,7 +41,7 @@ class CorbadoAuthenticator extends AbstractAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $user = $this->corbado->session()->getCurrentUser();
+        $user = $this->corbado->sessions()->getCurrentUser();
         if ($user->isAuthenticated() === false) {
             throw new CustomUserMessageAuthenticationException('User not authenticated');
         }

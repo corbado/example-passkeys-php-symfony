@@ -20,7 +20,7 @@
 {% block body %}
 
     <corbado-auth-provider
-        endpoint="{{ authenticationUrl }}"
+        project-id="{{ projectID }}"
     >
 
         <div class="main-container">
@@ -30,8 +30,8 @@
                 Name: {{userFullName}}</p>
 
             <corbado-logout-handler
-                endpoint="{{ authenticationUrl }}"
-                redirect_url="{{ path('login') }}"
+                project-id="{{ projectID }}"
+                redirect-url="{{ path('login') }}"
             >
                 <button>Logout</button>
             </corbado-logout-handler>
