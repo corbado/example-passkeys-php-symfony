@@ -1,4 +1,4 @@
-# Complete integration sample for the Corbado web component
+# Complete integration sample for the Corbado web component in PHP with Symfony
 This is a sample implementation of frontend and backend where the Corbado web component is integrated.
 
 **Note:** In this tutorial a customer system is created with some pre-existing password-based users. Have a look at our [docs](https://docs.corbado.com/integrations/web-component/no-existing-user-base) to see the integration if you don't have any users yet.
@@ -21,18 +21,23 @@ This is a sample implementation of frontend and backend where the Corbado web co
 
 > :warning: **If you are using a Windows machine**: Make sure to execute `git config --global core.autocrlf false` before cloning this repository to prevent git from changing the line endings of the bash scripts. (Docker will not be able to find the scripts if git does this)
 
-### 2.1. Prerequisites
+### 2.1. Configure environment variables
+
+#### Automatic Setup
+
+You can download this repository directly from our [Examples](https://app.corbado.com/app/getting-started/examples) page, where all environment variables and other necessary parameters will be configured automatically. In that case, you can skip the following manual setup step, and proceed to step 2.2. 
+
+#### Manual Setup
 
 Please follow steps 1-3 on our [Getting started](https://docs.corbado.com/overview/getting-started) page to create and configure a project in the [developer panel](https://app.corbado.com).
 
-### 2.2. Configure environment variables
+Copy `.env.example` to `.env` and use the values you obtained above to configure the following variables inside `.env`:
 
-Use the values you obtained in step 2.1 from the [developer panel](https://app.corbado.com/app/settings/credentials). to configure the following variables inside `.env`:
 1. **PROJECT_ID**: The project ID.
 2. **API_SECRET**: The API secret.
-3. **CLI_SECRET** The CLI secret.
+4. **CLI_SECRET** The CLI secret.
 
-### 2.3. Start Docker containers
+### 2.2. Start Docker containers
 
 **Note:** Before continuing, please ensure you have [Docker](https://www.docker.com/products/docker-desktop/) installed and accessible from your shell.
 
@@ -42,11 +47,11 @@ docker compose up
 ```
 **Note:** Please wait until all containers are ready. This can take some time. 
 
-### 2.4. Error check (optional)
+### 2.3. Error check (optional)
 
-To verify that your instance is running without errors enter `http://localhost:8000/ping` in your browser. If "pong" is displayed, everything worked.
+To verify that your instance is running without errors enter `http://localhost:19915/ping` in your browser. If "pong" is displayed, everything worked.
 
-![image](https://user-images.githubusercontent.com/23581140/208480558-c1bcde88-164e-4a22-97de-240fd93af4c1.png)
+<img width="1013" alt="Screenshot 2023-04-28 at 10 47 44 AM" src="https://user-images.githubusercontent.com/50023117/235101153-c99dd1ed-cefc-474f-8997-1fb4774a182e.png">
 
 ## 3. Usage
 
@@ -54,9 +59,9 @@ After step 2.3. your local server should be fully working.
 
 ### 3.1. Test authentication
 
-If you now visit `http://localhost:8000`, you should be forwarded to the `/login` page:
+If you now visit `http://localhost:19915`, you should be forwarded to the `/login` page:
 
-![image](https://user-images.githubusercontent.com/23581140/208479745-4dc9acaa-cc43-4324-bfd4-ad2ecf0f7901.png)
+<img width="834" alt="Screenshot 2023-04-28 at 10 42 10 AM" src="https://user-images.githubusercontent.com/50023117/235100435-9e727b16-8c65-4400-a987-a5a360a8c07c.png">
 
 You can login with one of the existing accounts or sign-up yourself.
 
@@ -68,11 +73,10 @@ You can login with one of the existing accounts or sign-up yourself.
 
 When authenticated you will be forwarded to the home page:
 
-![image](https://user-images.githubusercontent.com/23581140/208479917-e82f06a9-98d1-406d-89d5-aaceb6bdbb2b.png)
+<img width="833" alt="Screenshot 2023-04-28 at 10 41 40 AM" src="https://user-images.githubusercontent.com/50023117/235100667-dc11d62d-17f8-41e0-be0b-5942ebaa84d0.png">
 
 ### 3.2. View all users
 
 On [localhost:8081](http://localhost:8081) a PHPMyAdmin instance is running where you can view all registered users:
 
-![image](https://user-images.githubusercontent.com/23581140/208480126-65f84460-8914-40e8-a964-ac48bfdeec2f.png)
-
+<img width="1114" alt="image" src="https://user-images.githubusercontent.com/18458907/219000289-24cb9225-f226-43ef-85d9-6356b1f419a2.png">

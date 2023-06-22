@@ -16,7 +16,6 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
             $projectID: '%app.projectID%'
-            $apiSecret: '%app.apiSecret%'
             $webhookUsername: '%app.webhookUsername%'
             $webhookPassword: '%app.webhookPassword%'
 
@@ -32,9 +31,13 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Corbado\Client:
-        autowire: true
+    Corbado\Configuration:
         bind:
-            $baseURI: 'https://api.corbado.com'
-            $username: '%app.projectID%'
-            $password: '%app.apiSecret%'
+            $projectID: '%app.projectID%'
+            $apiSecret: '%app.apiSecret%'
+        calls:
+            - setJwksCachePool: [ '@Symfony\Component\Cache\Adapter\NullAdapter' ]
+
+    Corbado\SDK:
+
+    Symfony\Component\Cache\Adapter\NullAdapter:

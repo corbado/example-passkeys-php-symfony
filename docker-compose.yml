@@ -42,7 +42,7 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - 8000:8000
+      - 19915:19915
     restart: always
 
 volumes:
