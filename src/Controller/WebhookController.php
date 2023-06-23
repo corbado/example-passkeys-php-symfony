@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WebhookController extends AbstractController
 {
-    #[Route('/corbadoWebhookHandler', name: 'corbadoWebhookHandler', methods: 'POST')]
+    #[Route('/corbado-webhook', name: 'corbadoWebhookHandler', methods: 'POST')]
     public function corbadoWebhookHandler(UserRepository $userRepo, string $webhookUsername, string $webhookPassword): Response
     {
         try {
