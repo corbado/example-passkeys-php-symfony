@@ -2,13 +2,13 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
-use Corbado\Webhook\Webhook;
+use Corbado\Classes\Webhook;
+use Corbado\Classes\WebhookModels\AuthMethodsDataResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Corbado\Webhook\Classes\Models\AuthMethodsDataResponse;
 use Throwable;
 use Symfony\Component\Routing\Annotation\Route;
 
