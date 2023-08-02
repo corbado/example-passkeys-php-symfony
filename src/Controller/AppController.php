@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Corbado\Configuration;
 use Corbado\SDK;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -28,7 +29,9 @@ class AppController extends AbstractController
     #[Route('/', name: 'home', methods: 'GET')]
     public function home(Request $request, UserRepository $userRepo): Response
     {
+        $jwksCache = new FilesystemAdapter();
         $config = new Configuration($_ENV['PROJECT_ID'], $_ENV['API_SECRET']);
+        $config->setJwksCachePool($jwksCache);
         $corbado = new SDK($config);
 
         $user = $corbado->sessions()->getCurrentUser();
