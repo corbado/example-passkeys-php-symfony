@@ -16,6 +16,7 @@ services:
     autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
     bind:
       $projectID: "%app.projectID%"
+      $apiSecret: "%app.apiSecret%"
       $webhookUsername: "%app.webhookUsername%"
       $webhookPassword: "%app.webhookPassword%"
 
@@ -29,6 +30,7 @@ services:
       - "../src/Kernel.php"
 
   # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
 
   Corbado\SDK:
 

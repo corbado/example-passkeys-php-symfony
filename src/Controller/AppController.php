@@ -27,10 +27,10 @@ class AppController extends AbstractController
     }
 
     #[Route('/', name: 'home', methods: 'GET')]
-    public function home(Request $request, UserRepository $userRepo): Response
+    public function home(Request $request, UserRepository $userRepo, string $projectID, string $apiSecret): Response
     {
         $jwksCache = new FilesystemAdapter();
-        $config = new Configuration($_ENV['PROJECT_ID'], $_ENV['API_SECRET']);
+        $config = new Configuration($projectID, $apiSecret);
         $config->setJwksCachePool($jwksCache);
         $corbado = new SDK($config);
 
