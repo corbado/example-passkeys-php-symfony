@@ -4,7 +4,7 @@ This is a sample implementation of frontend and backend where the Corbado web co
 
 **Note:** In this tutorial an existing application is created with some pre-existing password-based users. Have a look
 at our [docs](https://docs.corbado.com/integrations/web-component/no-existing-user-base) to see the integration if you
-don't have any users yet.
+don't have any users yet. See also the [full blog post](https://www.corbado.com/blog/passkeys-php-symfony) to understand all the details.
 
 ## 1. File structure
 
