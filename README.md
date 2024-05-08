@@ -1,4 +1,4 @@
-# Complete integration sample for the Corbado web component in PHP with Symfony
+# PHP Symfony Passkey Example App
 
 This is a sample implementation of frontend and backend where the Corbado web component is integrated.
 
