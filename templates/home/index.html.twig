@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+    <div id="corbado-auth"></div>
+    <script type="module">
+        await Corbado.load({
+            projectId: "{{ projectId }}",
+            setShortSessionCookie: true,
+            darkMode: "off",
+        });
+
+        async function onLoggedIn() {
+            window.location.href = "/profile"
+        }
+
+        const authElement = document.getElementById('corbado-auth'); //Element where you want to render CorbadoAuth UI
+        Corbado.mountAuthUI(authElement, {
+            onLoggedIn: onLoggedIn,
+        });
+    </script>
+{% endblock %}
