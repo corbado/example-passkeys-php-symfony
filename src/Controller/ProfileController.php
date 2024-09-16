@@ -32,10 +32,7 @@ class ProfileController extends AbstractController
     public function showProfile(Request $request): Response
     {
         try {
-            $user = $this->corbadoSDK->sessions()->getCurrentUser();
-            if (!$user->isAuthenticated()) {
-                throw new \Exception('User is not authenticated.');
-            }
+            $user = $this->CorbadoSDK->sessions()->validateToken($_COOKIE['cbo_short_session']);
         } catch (\Exception $e) {
             $this->addFlash('error', 'Unable to retrieve user information.');
             return $this->redirectToRoute('homepage');
