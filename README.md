@@ -11,7 +11,7 @@ Please read the [full blog post](https://www.corbado.com/blog/passkeys-php-symfo
 ...
 ├── .env                              # Contains all environment variables
 ├── templates
-|   ├──home
+|   ├── home
 |   |   └── index.html.twig           # Homepage template
 |   ├── profile
 |   |   └── index.html.twig           # Profile page template
