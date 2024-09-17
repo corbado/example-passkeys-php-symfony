@@ -23,7 +23,7 @@ class ProfileController extends AbstractController
     public function __construct()
     {
         $jwksCache = new FilesystemAdapter();
-        $config = new Config($_ENV['CORBADO_PROJECT_ID'], $_ENV['CORBADO_API_SECRET']);
+        $config = new Config($_ENV['CORBADO_PROJECT_ID'], $_ENV['CORBADO_API_SECRET'], $_ENV['CORBADO_FRONTEND_API'], $_ENV['CORBADO_BACKEND_API']);
         $config->setJwksCachePool($jwksCache);
         $this->corbadoSDK = new SDK($config);
     }
@@ -32,10 +32,7 @@ class ProfileController extends AbstractController
     public function showProfile(Request $request): Response
     {
         try {
-            $user = $this->corbadoSDK->sessions()->getCurrentUser();
-            if (!$user->isAuthenticated()) {
-                throw new \Exception('User is not authenticated.');
-            }
+            $user = $this->corbadoSDK->sessions()->validateToken($_COOKIE['cbo_short_session']);
         } catch (\Exception $e) {
             $this->addFlash('error', 'Unable to retrieve user information.');
             return $this->redirectToRoute('homepage');

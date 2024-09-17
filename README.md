@@ -1,9 +1,9 @@
-# PHP Laravel Passkey Example App
+# PHP Symfony Passkey Example App
 
-This is a sample implementation of a PHP Laravel application that offers passkey authentication.
+This is a sample implementation of a PHP Symfony application that offers passkey authentication.
 For simple passkey-first authentication, the Corbado UI components are used.
 
-Please read the [full blog post](https://www.corbado.com/blog/passkeys-php-laravel) to understand all the required steps for a passkey integration into PHP Laravel apps.
+Please read the [full blog post](https://www.corbado.com/blog/passkeys-php-symfony) to understand all the required steps for a passkey integration into PHP Symfony apps.
 
 ## File structure
 
@@ -35,6 +35,6 @@ Also make sure that you have [PHP](https://php.net) as well as [Composer](https:
 ## Usage
 
 Then you can run the project locally by first downloading all dependencies with `composer install`
-and start the local instance with `php artisan serve`.
+and start the local instance with `php -S localhost:8000 -t public/`.
 
 Now head  to [http://localhost:8000](http://localhost:8000) in your browser to see the page.
