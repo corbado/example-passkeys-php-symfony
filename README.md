@@ -35,6 +35,6 @@ Also make sure that you have [PHP](https://php.net) as well as [Composer](https:
 ## Usage
 
 Then you can run the project locally by first downloading all dependencies with `composer install`
-and start the local instance with `php -S localhost:8000 -t public/`.
+and start the local instance with `php -S localhost:3000 -t public/`.
 
-Now head  to [http://localhost:8000](http://localhost:8000) in your browser to see the page.
+Now head  to [http://localhost:3000](http://localhost:3000) in your browser to see the page.
